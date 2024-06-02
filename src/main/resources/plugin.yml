@@ -1,0 +1,8 @@
+name: MobileCrafting
+description: ${project.description}
+version: ${project.version}
+main: de.max.mobilecrafting.init.MobileCrafting
+api-version: 1.20
+commands:
+  mobilecraft:
+    usage: /mobilecraft
