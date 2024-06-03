@@ -19,7 +19,7 @@ public class GUI {
      * @author ItsLeMax
      */
     public static void loadInventory(Player player) {
-        Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("Menu");
+        Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);

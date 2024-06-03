@@ -34,10 +34,7 @@ public class Recipe {
         crafterMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         crafter.setItemMeta(crafterMeta);
 
-        ShapedRecipe crafterRecipe = new ShapedRecipe(
-                new NamespacedKey(MobileCrafting.plugin, "crafter"),
-                crafter
-        );
+        ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(MobileCrafting.plugin, "crafter"), crafter);
 
         crafterRecipe.shape(" F ", " C ", " W ");
         crafterRecipe.setIngredient('F', Material.FURNACE);

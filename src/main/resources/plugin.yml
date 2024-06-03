@@ -5,4 +5,5 @@ main: de.max.mobilecrafting.init.MobileCrafting
 api-version: 1.20
 commands:
   mobilecraft:
+    description: /give equivalent for the crafter item
     usage: /mobilecraft

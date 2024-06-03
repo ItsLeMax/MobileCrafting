@@ -6,11 +6,11 @@
 
     <groupId>de.max</groupId>
     <artifactId>MobileCrafting</artifactId>
-    <version>0.9</version>
+    <version>1.0</version>
     <packaging>jar</packaging>
 
     <name>MobileCrafting</name>
-    <description>A Minecraft plugin that adds an item that contains crafting menus</description>
+    <description>Adds an item to minecraft that contains crafting menus</description>
     <url>https://dev.fpm-studio.de/</url>
 
     <properties>

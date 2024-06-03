@@ -21,7 +21,6 @@ public final class MobileCrafting extends JavaPlugin {
 
         Config.createConfigs(plugin);
         saveDefaultConfig();
-
         Recipe.register();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -29,11 +28,9 @@ public final class MobileCrafting extends JavaPlugin {
             Methods.createCache(player.getUniqueId());
         }
 
-        // TODO:
-        // Items in Ofen und Werkbank adäquat speichern und laden, falls Restart und Items immernoch darin
-
         getServer().getPluginManager().registerEvents(new BlockPlace(), plugin);
         getServer().getPluginManager().registerEvents(new InventoryClick(), plugin);
+        getServer().getPluginManager().registerEvents(new InventoryClose(), plugin);
         getServer().getPluginManager().registerEvents(new PlayerInteract(), plugin);
         getServer().getPluginManager().registerEvents(new PlayerJoin(), plugin);
         getServer().getPluginManager().registerEvents(new PlayerQuit(), plugin);
