@@ -37,7 +37,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("mobilecraft")).setExecutor(new MobileCraft());
 
-        Bukkit.getConsoleSender().sendMessage("§6" + Methods.language("general.init"));
+        Bukkit.getConsoleSender().sendMessage("§c" + Methods.language("general.init"));
     }
 
     /**

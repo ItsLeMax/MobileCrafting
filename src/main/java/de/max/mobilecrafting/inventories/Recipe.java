@@ -28,7 +28,7 @@ public class Recipe {
         ItemMeta crafterMeta = crafter.getItemMeta();
 
         assert crafterMeta != null;
-        crafterMeta.setDisplayName("§6" + Methods.language("interface.mobileCrafting"));
+        crafterMeta.setDisplayName("§c" + Methods.language("interface.mobileCrafting"));
         crafterMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.inventoryContent")));
         crafterMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
         crafterMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
@@ -36,10 +36,10 @@ public class Recipe {
 
         ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(MobileCrafting.plugin, "crafter"), crafter);
 
-        crafterRecipe.shape(" F ", " C ", " W ");
-        crafterRecipe.setIngredient('F', Material.FURNACE);
-        crafterRecipe.setIngredient('C', Material.CHEST);
+        crafterRecipe.shape(" W ", " C ", " F ");
         crafterRecipe.setIngredient('W', Material.CRAFTING_TABLE);
+        crafterRecipe.setIngredient('C', Material.CHEST);
+        crafterRecipe.setIngredient('F', Material.FURNACE);
 
         Bukkit.addRecipe(crafterRecipe);
     }

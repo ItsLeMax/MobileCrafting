@@ -64,8 +64,8 @@ public class Methods {
      */
     public static void createCache(UUID uuid) {
         MobileCrafting.playerCache.put(uuid, new HashMap<>());
-        MobileCrafting.playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9));
-        MobileCrafting.playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH));
-        MobileCrafting.playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE));
+        MobileCrafting.playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + Methods.language("interface.mobileCrafting")));
+        MobileCrafting.playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + Methods.language("interface.mobileCraftingTitle")));
+        MobileCrafting.playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + Methods.language("interface.mobileSmeltingTitle")));
     }
 }

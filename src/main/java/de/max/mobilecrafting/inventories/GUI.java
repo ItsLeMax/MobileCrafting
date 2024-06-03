@@ -25,7 +25,7 @@ public class GUI {
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§6" + Methods.language("interface.mobileCraftingTitle"));
+        craftingMeta.setDisplayName("§c" + Methods.language("interface.mobileCraftingTitle"));
         craftingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileCraftingLore")));
         crafting.setItemMeta(craftingMeta);
 
@@ -34,7 +34,7 @@ public class GUI {
         ItemStack smelting = new ItemStack(Material.FURNACE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§d" + Methods.language("interface.mobileSmeltingTitle"));
+        smeltingMeta.setDisplayName("§5" + Methods.language("interface.mobileSmeltingTitle"));
         smeltingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileSmeltingLore")));
         smelting.setItemMeta(smeltingMeta);
 
