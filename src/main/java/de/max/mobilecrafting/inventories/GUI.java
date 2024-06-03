@@ -1,5 +1,6 @@
 package de.max.mobilecrafting.inventories;
 
+import de.max.mobilecrafting.init.Methods;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -7,7 +8,16 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import java.util.Collections;
+
 public class GUI {
+    /**
+     * Lädt das GUI des Craftingmenüs
+     * <p>
+     * Loads the GUI of the crafting menu
+     *
+     * @author ItsLeMax
+     */
     public static void loadInventory(Player player) {
         Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("Menu");
         player.openInventory(inventory);
@@ -15,7 +25,8 @@ public class GUI {
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§6Mobile Werkbank");
+        craftingMeta.setDisplayName("§6" + Methods.language("interface.mobileCraftingTitle"));
+        craftingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileCraftingLore")));
         crafting.setItemMeta(craftingMeta);
 
         inventory.setItem(3, crafting);
@@ -23,7 +34,8 @@ public class GUI {
         ItemStack smelting = new ItemStack(Material.FURNACE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§dMobiler Ofen");
+        smeltingMeta.setDisplayName("§d" + Methods.language("interface.mobileSmeltingTitle"));
+        smeltingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileSmeltingLore")));
         smelting.setItemMeta(smeltingMeta);
 
         inventory.setItem(5, smelting);

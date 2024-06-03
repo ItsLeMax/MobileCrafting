@@ -1,0 +1,11 @@
+general:
+  init: "[MobileCrafting] has been loaded successfully!"
+  playerOnly: "Only players can execute this command."
+  opOnly: "Only players with OP or similar can execute this command."
+interface:
+  mobileCrafting: "Mobile Crafting"
+  inventoryContent: "Contains Crafting Table and Furnace"
+  mobileCraftingTitle: "Mobile Crafting Table"
+  mobileSmeltingTitle: "Mobile Furnace"
+  mobileCraftingLore: "3x3 Grid Crafting Area"
+  mobileSmeltingLore: "Common Furnace"

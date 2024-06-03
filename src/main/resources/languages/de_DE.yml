@@ -1,0 +1,11 @@
+general:
+  init: "[MobileCrafting] wurde erfolgreich geladen!"
+  playerOnly: "Nur Spieler können diesen Befehl ausführen."
+  opOnly: "Nur Spieler mit OP o.ä. können diesen Befehl ausführen."
+interface:
+  mobileCrafting: "Mobile Herstellung"
+  inventoryContent: "Enthält Werkbank und Ofen"
+  mobileCraftingTitle: "Mobile Werkbank"
+  mobileSmeltingTitle: "Mobiler Ofen"
+  mobileCraftingLore: "3x3-Raster Herstellungsfläche"
+  mobileSmeltingLore: "Herkömmlicher Ofen"

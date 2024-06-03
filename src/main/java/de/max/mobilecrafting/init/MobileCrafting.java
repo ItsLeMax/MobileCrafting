@@ -18,6 +18,10 @@ public final class MobileCrafting extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+
+        Config.createConfigs(plugin);
+        saveDefaultConfig();
+
         Recipe.register();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -26,8 +30,7 @@ public final class MobileCrafting extends JavaPlugin {
         }
 
         // TODO:
-        // Items in Ofen speichern, falls Restart und Kohle immernoch darin
-        // Deutsch und Englisch
+        // Items in Ofen und Werkbank adäquat speichern und laden, falls Restart und Items immernoch darin
 
         getServer().getPluginManager().registerEvents(new BlockPlace(), plugin);
         getServer().getPluginManager().registerEvents(new InventoryClick(), plugin);
@@ -37,9 +40,16 @@ public final class MobileCrafting extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("mobilecraft")).setExecutor(new MobileCraft());
 
-        Bukkit.getConsoleSender().sendMessage("§6MobileCrafting Enabled");
+        Bukkit.getConsoleSender().sendMessage("§6" + Methods.language("general.init"));
     }
 
+    /**
+     * Sendet den Cache in Intervallen in die Konsole
+     * <p>
+     * Sends the cache in intervals into the console
+     *
+     * @author ItsLeMax
+     */
     @SuppressWarnings("unused")
     private void log() {
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + playerCache), 0, 200);
