@@ -19,4 +19,5 @@ stopping the server.
 
 ## Images of the plugin
 
-WiP
+![crafting](https://github.com/ItsLeMax/MobileCrafting/assets/80857459/7282f9b3-9b35-4205-8098-cbf2b03f7530)
+![interface](https://github.com/ItsLeMax/MobileCrafting/assets/80857459/c5fee2ff-08b8-4de3-a070-e320ba9cc728)
