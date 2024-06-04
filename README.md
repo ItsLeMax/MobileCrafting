@@ -20,6 +20,7 @@ stopping the server.
 ## Recipe
 
 You can craft the item using a `barrel` and a `crafting table`.
+Tables inside need to be unlocked first by putting their respective item into their proper slot. 
 
 ## Images of the plugin
 
