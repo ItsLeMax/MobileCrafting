@@ -109,4 +109,19 @@ public final class Config extends JavaPlugin {
             put(file, cfg);
         }
     }
+
+    /**
+     * Speichert die storage.yml
+     * <p>
+     * Saves the storage.yml
+     *
+     * @author ItsLeMax
+     */
+    public static void saveStorage() {
+        try {
+            getConfig("storage").save(getFile("storage"));
+        } catch (IOException error) {
+            throw new RuntimeException(error);
+        }
+    }
 }

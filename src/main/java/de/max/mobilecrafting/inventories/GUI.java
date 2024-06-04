@@ -1,5 +1,6 @@
 package de.max.mobilecrafting.inventories;
 
+import de.max.mobilecrafting.init.Config;
 import de.max.mobilecrafting.init.Methods;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Material;
@@ -12,9 +13,9 @@ import java.util.Collections;
 
 public class GUI {
     /**
-     * Lädt das GUI des Craftingmenüs
+     * Lädt das GUI des Menüs
      * <p>
-     * Loads the GUI of the crafting menu
+     * Loads the GUI of the menu
      *
      * @author ItsLeMax
      */
@@ -22,20 +23,23 @@ public class GUI {
         Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
+        boolean hasFurnace = Config.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
+
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§c" + Methods.language("interface.mobileCraftingTitle"));
-        craftingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileCraftingLore")));
+        craftingMeta.setDisplayName("§c" + Methods.language("interface.workbenchTitle"));
         crafting.setItemMeta(craftingMeta);
 
         inventory.setItem(3, crafting);
 
-        ItemStack smelting = new ItemStack(Material.FURNACE);
+        ItemStack smelting = new ItemStack(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§5" + Methods.language("interface.mobileSmeltingTitle"));
-        smeltingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileSmeltingLore")));
+        smeltingMeta.setDisplayName("§5" + Methods.language("interface.furnaceTitle"));
+        if (!hasFurnace) {
+            smeltingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.unlockSlot")));
+        }
         smelting.setItemMeta(smeltingMeta);
 
         inventory.setItem(5, smelting);

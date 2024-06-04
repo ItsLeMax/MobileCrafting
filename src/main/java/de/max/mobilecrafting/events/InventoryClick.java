@@ -2,6 +2,7 @@ package de.max.mobilecrafting.events;
 
 import de.max.mobilecrafting.init.Config;
 import de.max.mobilecrafting.init.MobileCrafting;
+import de.max.mobilecrafting.inventories.GUI;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -36,6 +37,26 @@ public class InventoryClick implements Listener {
             return;
         }
 
+        if (subMenuItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
+            ItemStack cursor = event.getCursor();
+
+            if (cursor == null) return;
+            if (cursor.getType().equals(Material.FURNACE)) {
+                Config.getConfig("storage").set(uuid + ".Unlocked." + cursor.getType(), true);
+                Config.saveStorage();
+
+                cursor.setAmount(cursor.getAmount() - 1);
+
+                player.closeInventory();
+                player.openInventory((Inventory) MobileCrafting.playerCache.get(uuid).get("MENU"));
+                GUI.loadInventory(player);
+
+                player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
+            }
+
+            return;
+        }
+
         String subMenuType = subMenuItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) subMenuType = "WORKBENCH";
         player.openInventory((Inventory) MobileCrafting.playerCache.get(uuid).get(subMenuType));
@@ -50,7 +71,7 @@ public class InventoryClick implements Listener {
         Inventory openedSubMenu = ((Inventory) MobileCrafting.playerCache.get(uuid).get(subMenuType));
 
         for (int index = 0; index < openedSubMenu.getType().getDefaultSize(); index++) {
-            ItemStack craftingItem = (ItemStack) Config.getConfig("storage").get(uuid + "." + subMenuType + "." + index);
+            ItemStack craftingItem = (ItemStack) Config.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
             if (craftingItem == null) continue;
 
             openedSubMenu.setItem(index, craftingItem);
