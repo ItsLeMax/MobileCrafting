@@ -17,7 +17,11 @@ stopping the server.
 1. Download the latest jar [here](https://github.com/ItsLeMax/MobileCrafting/releases/latest)
 2. Put it into the plugins folder of your server
 
+## Recipe
+
+You can craft the item using a `barrel` and a `crafting table`.
+
 ## Images of the plugin
 
-![crafting](https://github.com/ItsLeMax/MobileCrafting/assets/80857459/7282f9b3-9b35-4205-8098-cbf2b03f7530)
+![crafting](https://github.com/ItsLeMax/MobileCrafting/assets/80857459/143609c1-6880-4ee9-9cac-bcfc6b008d01)
 ![interface](https://github.com/ItsLeMax/MobileCrafting/assets/80857459/6f6e6eaa-55d7-4933-9935-6d62c6ca12ea)
