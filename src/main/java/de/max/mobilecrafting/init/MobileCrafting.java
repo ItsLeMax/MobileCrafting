@@ -1,6 +1,7 @@
 package de.max.mobilecrafting.init;
 
 import de.max.ilmlib.init.ConfigLib;
+import de.max.ilmlib.init.ILMLib;
 import de.max.mobilecrafting.commands.MobileCraft;
 import de.max.mobilecrafting.events.*;
 import de.max.mobilecrafting.inventories.Recipe;
@@ -20,8 +21,8 @@ public final class MobileCrafting extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
-        ConfigLib.init(plugin);
-        ConfigLib.createConfigs("storage", "de_DE", "en_US", "custom_lang");
+        ILMLib.init(plugin);
+        ConfigLib.create("storage", "de_DE", "en_US", "custom_lang");
 
         saveDefaultConfig();
         Recipe.register();
@@ -40,7 +41,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("mobilecraft")).setExecutor(new MobileCraft());
 
-        Bukkit.getConsoleSender().sendMessage("§c" + ConfigLib.load("general.init"));
+        Bukkit.getConsoleSender().sendMessage("§c" + ConfigLib.lang("general.init"));
     }
 
     /**

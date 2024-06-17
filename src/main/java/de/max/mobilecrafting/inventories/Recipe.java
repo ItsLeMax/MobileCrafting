@@ -28,8 +28,8 @@ public class Recipe {
         ItemMeta crafterMeta = crafter.getItemMeta();
 
         assert crafterMeta != null;
-        crafterMeta.setDisplayName("§c" + ConfigLib.load("interface.mobileCraftingName"));
-        crafterMeta.setLore(Collections.singletonList("§7" + ConfigLib.load("interface.mobileCraftingLore")));
+        crafterMeta.setDisplayName("§c" + ConfigLib.lang("interface.mobileCraftingName"));
+        crafterMeta.setLore(Collections.singletonList("§7" + ConfigLib.lang("interface.mobileCraftingLore")));
         crafterMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
         crafterMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         crafter.setItemMeta(crafterMeta);

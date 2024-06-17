@@ -27,7 +27,7 @@ public class GUI {
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§c" + ConfigLib.load("interface.workbenchTitle"));
+        craftingMeta.setDisplayName("§c" + ConfigLib.lang("interface.workbenchTitle"));
         crafting.setItemMeta(craftingMeta);
 
         inventory.setItem(3, crafting);
@@ -35,9 +35,9 @@ public class GUI {
         ItemStack smelting = new ItemStack(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§5" + ConfigLib.load("interface.furnaceTitle"));
+        smeltingMeta.setDisplayName("§5" + ConfigLib.lang("interface.furnaceTitle"));
         if (!hasFurnace) {
-            smeltingMeta.setLore(Collections.singletonList("§7" + ConfigLib.load("interface.unlockSlot")));
+            smeltingMeta.setLore(Collections.singletonList("§7" + ConfigLib.lang("interface.unlockSlot")));
         }
         smelting.setItemMeta(smeltingMeta);
 

@@ -14,12 +14,12 @@ public class MobileCraft implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            Methods.info(sender, 'c', ConfigLib.load("general.playerOnly"));
+            Methods.info(sender, 'c', ConfigLib.lang("general.playerOnly"));
             return true;
         }
 
         if (!player.isOp()) {
-            Methods.info(sender, 'c', ConfigLib.load("general.opOnly"));
+            Methods.info(sender, 'c', ConfigLib.lang("general.opOnly"));
             return true;
         }
 
