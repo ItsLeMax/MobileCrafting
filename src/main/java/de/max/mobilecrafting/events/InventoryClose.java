@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.events;
 
-import de.max.configlib.init.ConfigLib;
+import de.max.ilmlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.commands;
 
-import de.max.configlib.init.ConfigLib;
+import de.max.ilmlib.init.ConfigLib;
 import de.max.mobilecrafting.init.Methods;
 import de.max.mobilecrafting.inventories.Recipe;
 import org.bukkit.Sound;

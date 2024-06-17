@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.inventories;
 
-import de.max.configlib.init.ConfigLib;
+import de.max.ilmlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

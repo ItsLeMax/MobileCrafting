@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.init;
 
-import de.max.configlib.init.ConfigLib;
+import de.max.ilmlib.init.ConfigLib;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.inventory.InventoryType;

@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.init;
 
-import de.max.configlib.init.ConfigLib;
+import de.max.ilmlib.init.ConfigLib;
 import de.max.mobilecrafting.commands.MobileCraft;
 import de.max.mobilecrafting.events.*;
 import de.max.mobilecrafting.inventories.Recipe;
