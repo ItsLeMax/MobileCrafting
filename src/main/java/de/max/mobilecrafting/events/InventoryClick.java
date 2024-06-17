@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.events;
 
-import de.max.mobilecrafting.init.Config;
+import de.max.configlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import de.max.mobilecrafting.inventories.GUI;
 import org.bukkit.Material;
@@ -42,8 +42,8 @@ public class InventoryClick implements Listener {
 
             if (cursor == null) return;
             if (cursor.getType().equals(Material.FURNACE)) {
-                Config.getConfig("storage").set(uuid + ".Unlocked." + cursor.getType(), true);
-                Config.saveStorage();
+                ConfigLib.getConfig("storage").set(uuid + ".Unlocked." + cursor.getType(), true);
+                ConfigLib.save("storage");
 
                 cursor.setAmount(cursor.getAmount() - 1);
 
@@ -71,7 +71,7 @@ public class InventoryClick implements Listener {
         Inventory openedSubMenu = ((Inventory) MobileCrafting.playerCache.get(uuid).get(subMenuType));
 
         for (int index = 0; index < openedSubMenu.getType().getDefaultSize(); index++) {
-            ItemStack craftingItem = (ItemStack) Config.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
+            ItemStack craftingItem = (ItemStack) ConfigLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
             if (craftingItem == null) continue;
 
             openedSubMenu.setItem(index, craftingItem);

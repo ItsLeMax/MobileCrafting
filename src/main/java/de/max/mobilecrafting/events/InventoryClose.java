@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.events;
 
-import de.max.mobilecrafting.init.Config;
+import de.max.configlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -17,10 +17,10 @@ public class InventoryClose implements Listener {
 
         if (clickedInventoryEquals(event, "FURNACE", "WORKBENCH")) {
             for (int index = 0; index < inventory.getType().getDefaultSize(); index++) {
-                Config.getConfig("storage").set(event.getView().getPlayer().getUniqueId() + ".Inventory." + inventory.getType() + "." + index, inventory.getItem(index));
+                ConfigLib.getConfig("storage").set(event.getView().getPlayer().getUniqueId() + ".Inventory." + inventory.getType() + "." + index, inventory.getItem(index));
             }
 
-            Config.saveStorage();
+            ConfigLib.save("storage");
         }
     }
 

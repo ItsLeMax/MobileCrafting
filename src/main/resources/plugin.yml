@@ -4,6 +4,7 @@ author: ItsLeMax
 version: ${project.version}
 website: ${project.url}
 
+depend: [ ConfigLib ]
 main: de.max.mobilecrafting.init.MobileCrafting
 api-version: 1.20
 commands:

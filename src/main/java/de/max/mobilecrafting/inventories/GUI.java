@@ -1,7 +1,6 @@
 package de.max.mobilecrafting.inventories;
 
-import de.max.mobilecrafting.init.Config;
-import de.max.mobilecrafting.init.Methods;
+import de.max.configlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -23,12 +22,12 @@ public class GUI {
         Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
-        boolean hasFurnace = Config.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
+        boolean hasFurnace = ConfigLib.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
 
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§c" + Methods.language("interface.workbenchTitle"));
+        craftingMeta.setDisplayName("§c" + ConfigLib.load("interface.workbenchTitle"));
         crafting.setItemMeta(craftingMeta);
 
         inventory.setItem(3, crafting);
@@ -36,9 +35,9 @@ public class GUI {
         ItemStack smelting = new ItemStack(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§5" + Methods.language("interface.furnaceTitle"));
+        smeltingMeta.setDisplayName("§5" + ConfigLib.load("interface.furnaceTitle"));
         if (!hasFurnace) {
-            smeltingMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.unlockSlot")));
+            smeltingMeta.setLore(Collections.singletonList("§7" + ConfigLib.load("interface.unlockSlot")));
         }
         smelting.setItemMeta(smeltingMeta);
 

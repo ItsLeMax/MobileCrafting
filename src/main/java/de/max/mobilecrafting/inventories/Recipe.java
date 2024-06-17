@@ -1,6 +1,6 @@
 package de.max.mobilecrafting.inventories;
 
-import de.max.mobilecrafting.init.Methods;
+import de.max.configlib.init.ConfigLib;
 import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -28,8 +28,8 @@ public class Recipe {
         ItemMeta crafterMeta = crafter.getItemMeta();
 
         assert crafterMeta != null;
-        crafterMeta.setDisplayName("§c" + Methods.language("interface.mobileCraftingName"));
-        crafterMeta.setLore(Collections.singletonList("§7" + Methods.language("interface.mobileCraftingLore")));
+        crafterMeta.setDisplayName("§c" + ConfigLib.load("interface.mobileCraftingName"));
+        crafterMeta.setLore(Collections.singletonList("§7" + ConfigLib.load("interface.mobileCraftingLore")));
         crafterMeta.addEnchant(Enchantment.ARROW_INFINITE, 1, true);
         crafterMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
         crafter.setItemMeta(crafterMeta);

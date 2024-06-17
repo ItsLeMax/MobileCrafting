@@ -1,5 +1,6 @@
 package de.max.mobilecrafting.commands;
 
+import de.max.configlib.init.ConfigLib;
 import de.max.mobilecrafting.init.Methods;
 import de.max.mobilecrafting.inventories.Recipe;
 import org.bukkit.Sound;
@@ -13,12 +14,12 @@ public class MobileCraft implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (!(sender instanceof Player player)) {
-            Methods.info(sender, 'c', Methods.language("general.playerOnly"));
+            Methods.info(sender, 'c', ConfigLib.load("general.playerOnly"));
             return true;
         }
 
         if (!player.isOp()) {
-            Methods.info(sender, 'c', Methods.language("general.opOnly"));
+            Methods.info(sender, 'c', ConfigLib.load("general.opOnly"));
             return true;
         }
 
