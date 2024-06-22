@@ -24,7 +24,7 @@ public final class MobileCrafting extends JavaPlugin {
         ILMLib.init(plugin);
         ConfigLib.create("storage", "de_DE", "en_US", "custom_lang");
 
-        saveDefaultConfig();
+        ConfigLib.saveDefaultConfig();
         Recipe.register();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
