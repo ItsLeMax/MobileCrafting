@@ -7,6 +7,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -21,24 +22,31 @@ public class InventoryClick implements Listener {
         Player player = (Player) event.getView().getPlayer();
         UUID uuid = player.getUniqueId();
 
-        ItemStack subMenuItem = event.getCurrentItem();
-        Inventory menuInventory = event.getClickedInventory();
+        ItemStack clickedItem = event.getCurrentItem();
+        Inventory clickedInventory = event.getClickedInventory();
 
-        if (subMenuItem == null || menuInventory == null) {
+        if (event.getInventory().equals(playerCache.get(uuid).get("WORKBENCH")) && event.isShiftClick()) {
+            if (clickedInventory != null && clickedInventory.getType().equals(InventoryType.PLAYER)) {
+                event.setCancelled(true);
+                return;
+            }
+        }
+
+        if (clickedItem == null || clickedInventory == null) {
             return;
         }
 
-        if (!menuInventory.equals(playerCache.get(uuid).get("MENU"))) {
+        if (!clickedInventory.equals(playerCache.get(uuid).get("MENU"))) {
             return;
         }
 
         event.setCancelled(true);
 
-        if (subMenuItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
+        if (clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
             return;
         }
 
-        if (subMenuItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
+        if (clickedItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
             ItemStack cursor = event.getCursor();
 
             if (cursor == null) return;
@@ -58,14 +66,14 @@ public class InventoryClick implements Listener {
             return;
         }
 
-        String subMenuType = subMenuItem.getType().toString();
+        String subMenuType = clickedItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) subMenuType = "WORKBENCH";
         player.openInventory((Inventory) playerCache.get(uuid).get(subMenuType));
 
-        Sound sound = switch (subMenuItem.getType()) {
+        Sound sound = switch (clickedItem.getType()) {
             case CRAFTING_TABLE -> Sound.BLOCK_CHEST_OPEN;
             case FURNACE -> Sound.ITEM_FIRECHARGE_USE;
-            default -> throw new IllegalStateException("Missing SFX for " + subMenuItem.getType());
+            default -> throw new RuntimeException();
         };
 
         player.playSound(player.getLocation(), sound, 1, 1);
