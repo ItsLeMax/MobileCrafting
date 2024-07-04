@@ -1,7 +1,5 @@
 package de.max.mobilecrafting.inventories;
 
-import de.max.ilmlib.init.ConfigLib;
-import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -9,6 +7,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
+
+import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class GUI {
     /**
@@ -19,15 +20,15 @@ public class GUI {
      * @author ItsLeMax
      */
     public static void loadInventory(Player player) {
-        Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("MENU");
+        Inventory inventory = (Inventory) playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
-        boolean hasFurnace = ConfigLib.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
+        boolean hasFurnace = configLib.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
 
         ItemStack crafting = new ItemStack(Material.CRAFTING_TABLE);
         ItemMeta craftingMeta = crafting.getItemMeta();
         assert craftingMeta != null;
-        craftingMeta.setDisplayName("§c" + ConfigLib.lang("interface.workbenchTitle"));
+        craftingMeta.setDisplayName("§c" + configLib.lang("interface.workbenchTitle"));
         crafting.setItemMeta(craftingMeta);
 
         inventory.setItem(3, crafting);
@@ -35,9 +36,9 @@ public class GUI {
         ItemStack smelting = new ItemStack(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE);
         ItemMeta smeltingMeta = smelting.getItemMeta();
         assert smeltingMeta != null;
-        smeltingMeta.setDisplayName("§5" + ConfigLib.lang("interface.furnaceTitle"));
+        smeltingMeta.setDisplayName("§5" + configLib.lang("interface.furnaceTitle"));
         if (!hasFurnace) {
-            smeltingMeta.setLore(Collections.singletonList("§7" + ConfigLib.lang("interface.unlockSlot")));
+            smeltingMeta.setLore(Collections.singletonList("§7" + configLib.lang("interface.unlockSlot")));
         }
         smelting.setItemMeta(smeltingMeta);
 

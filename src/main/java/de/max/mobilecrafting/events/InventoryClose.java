@@ -1,7 +1,5 @@
 package de.max.mobilecrafting.events;
 
-import de.max.ilmlib.init.ConfigLib;
-import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -10,6 +8,9 @@ import org.bukkit.inventory.Inventory;
 import java.util.Objects;
 import java.util.UUID;
 
+import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
+
 public class InventoryClose implements Listener {
     @EventHandler
     public static void inventoryClose(InventoryCloseEvent event) {
@@ -17,10 +18,10 @@ public class InventoryClose implements Listener {
 
         if (clickedInventoryEquals(event, "FURNACE", "WORKBENCH")) {
             for (int index = 0; index < inventory.getType().getDefaultSize(); index++) {
-                ConfigLib.getConfig("storage").set(event.getView().getPlayer().getUniqueId() + ".Inventory." + inventory.getType() + "." + index, inventory.getItem(index));
+                configLib.getConfig("storage").set(event.getView().getPlayer().getUniqueId() + ".Inventory." + inventory.getType() + "." + index, inventory.getItem(index));
             }
 
-            ConfigLib.save("storage");
+            configLib.save("storage");
         }
     }
 
@@ -39,7 +40,7 @@ public class InventoryClose implements Listener {
         UUID uuid = event.getPlayer().getUniqueId();
 
         for (String GUI : GUIs) {
-            if (Objects.equals(event.getInventory(), MobileCrafting.playerCache.get(uuid).get(GUI))) {
+            if (Objects.equals(event.getInventory(), playerCache.get(uuid).get(GUI))) {
                 return true;
             }
         }

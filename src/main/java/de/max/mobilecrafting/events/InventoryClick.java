@@ -1,7 +1,5 @@
 package de.max.mobilecrafting.events;
 
-import de.max.ilmlib.init.ConfigLib;
-import de.max.mobilecrafting.init.MobileCrafting;
 import de.max.mobilecrafting.inventories.GUI;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -13,6 +11,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
+
+import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class InventoryClick implements Listener {
     @EventHandler
@@ -27,7 +28,7 @@ public class InventoryClick implements Listener {
             return;
         }
 
-        if (!menuInventory.equals(MobileCrafting.playerCache.get(uuid).get("MENU"))) {
+        if (!menuInventory.equals(playerCache.get(uuid).get("MENU"))) {
             return;
         }
 
@@ -42,13 +43,13 @@ public class InventoryClick implements Listener {
 
             if (cursor == null) return;
             if (cursor.getType().equals(Material.FURNACE)) {
-                ConfigLib.getConfig("storage").set(uuid + ".Unlocked." + cursor.getType(), true);
-                ConfigLib.save("storage");
+                configLib.getConfig("storage").set(uuid + ".Unlocked." + cursor.getType(), true);
+                configLib.save("storage");
 
                 cursor.setAmount(cursor.getAmount() - 1);
 
                 player.closeInventory();
-                player.openInventory((Inventory) MobileCrafting.playerCache.get(uuid).get("MENU"));
+                player.openInventory((Inventory) playerCache.get(uuid).get("MENU"));
                 GUI.loadInventory(player);
 
                 player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
@@ -59,7 +60,7 @@ public class InventoryClick implements Listener {
 
         String subMenuType = subMenuItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) subMenuType = "WORKBENCH";
-        player.openInventory((Inventory) MobileCrafting.playerCache.get(uuid).get(subMenuType));
+        player.openInventory((Inventory) playerCache.get(uuid).get(subMenuType));
 
         Sound sound = switch (subMenuItem.getType()) {
             case CRAFTING_TABLE -> Sound.BLOCK_CHEST_OPEN;
@@ -68,10 +69,10 @@ public class InventoryClick implements Listener {
         };
 
         player.playSound(player.getLocation(), sound, 1, 1);
-        Inventory openedSubMenu = ((Inventory) MobileCrafting.playerCache.get(uuid).get(subMenuType));
+        Inventory openedSubMenu = ((Inventory) playerCache.get(uuid).get(subMenuType));
 
         for (int index = 0; index < openedSubMenu.getType().getDefaultSize(); index++) {
-            ItemStack craftingItem = (ItemStack) ConfigLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
+            ItemStack craftingItem = (ItemStack) configLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
             if (craftingItem == null) continue;
 
             openedSubMenu.setItem(index, craftingItem);

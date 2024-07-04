@@ -1,12 +1,14 @@
 package de.max.mobilecrafting.init;
 
-import de.max.ilmlib.init.ConfigLib;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.inventory.InventoryType;
 
 import java.util.HashMap;
 import java.util.UUID;
+
+import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class Methods {
     /**
@@ -37,9 +39,9 @@ public class Methods {
      * @author ItsLeMax
      */
     public static void createCache(UUID uuid) {
-        MobileCrafting.playerCache.put(uuid, new HashMap<>());
-        MobileCrafting.playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + ConfigLib.lang("interface.mobileCraftingName")));
-        MobileCrafting.playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + ConfigLib.lang("interface.workbenchTitle")));
-        MobileCrafting.playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + ConfigLib.lang("interface.furnaceTitle")));
+        playerCache.put(uuid, new HashMap<>());
+        playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + configLib.lang("interface.mobileCraftingName")));
+        playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + configLib.lang("interface.workbenchTitle")));
+        playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + configLib.lang("interface.furnaceTitle")));
     }
 }

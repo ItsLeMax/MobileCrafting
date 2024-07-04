@@ -16,15 +16,17 @@ import java.util.UUID;
 public final class MobileCrafting extends JavaPlugin {
     public static MobileCrafting plugin;
     public static HashMap<UUID, HashMap<String, Object>> playerCache = new HashMap<>();
+    public static ConfigLib configLib;
 
     @Override
     public void onEnable() {
         plugin = this;
 
-        ILMLib.init(plugin);
-        ConfigLib.create("storage", "de_DE", "en_US", "custom_lang");
+        configLib = new ILMLib(plugin).getConfigLib();
+        configLib
+                .createDefaults("config", "storage")
+                .createInsideDirectory("languages", "de_DE", "en_US", "custom_lang");
 
-        ConfigLib.saveDefaultConfig();
         Recipe.register();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
@@ -41,7 +43,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         Objects.requireNonNull(getCommand("mobilecraft")).setExecutor(new MobileCraft());
 
-        Bukkit.getConsoleSender().sendMessage("§c" + ConfigLib.lang("general.init"));
+        Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("general.init"));
     }
 
     /**
