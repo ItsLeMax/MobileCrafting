@@ -15,7 +15,7 @@ stopping the server.
 ## Setup
 
 1. Download the latest jar files [here](https://github.com/ItsLeMax/MobileCrafting/releases/latest)
-2. Put it into the plugins folder of your server
+2. Put them into the plugins folder of your server
 
 ## Recipe
 
