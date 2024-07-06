@@ -1,7 +1,9 @@
 general:
   init: "[MobileCrafting] wurde erfolgreich geladen!"
-  playerOnly: "Nur Spieler können diesen Befehl ausführen."
-  opOnly: "Nur Spieler mit OP o.ä. können diesen Befehl ausführen."
+commands:
+  playerOnly: "Nur Spieler können diesen Befehl ausführen!"
+  opOnly: "Nur Spieler mit OP o.ä. können diesen Befehl ausführen!"
+  tooManyArgs: "Du hast zu viele Argumente angegeben!"
 interface:
   mobileCraftingName: "Mobile Herstellung"
   mobileCraftingLore: "Enthält Werkbank und Ofen"

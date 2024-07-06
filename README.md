@@ -12,6 +12,10 @@ furnaces only for them to be tossed away.
 Items put into the crafting table and furnace will be stored, meaning that they will not vanish after reloading or
 stopping the server.
 
+## Permissions
+
+- `mobilecrafting.give` to use the `givemobilecrafter` command
+
 ## Setup
 
 1. Download the latest jar files [here](https://github.com/ItsLeMax/MobileCrafting/releases/latest)

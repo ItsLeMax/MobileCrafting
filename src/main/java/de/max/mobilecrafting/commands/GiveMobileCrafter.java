@@ -11,16 +11,21 @@ import org.jetbrains.annotations.NotNull;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
 
-public class MobileCraft implements CommandExecutor {
+public class GiveMobileCrafter implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (!(sender instanceof Player player)) {
-            Methods.info(sender, 'c', configLib.lang("general.playerOnly"));
+        if (args.length > 0) {
+            Methods.info(sender, 'c', configLib.lang("commands.tooManyArgs"));
             return true;
         }
 
-        if (!player.isOp()) {
-            Methods.info(sender, 'c', configLib.lang("general.opOnly"));
+        if (!(sender instanceof Player player)) {
+            Methods.info(sender, 'c', configLib.lang("commands.playerOnly"));
+            return true;
+        }
+
+        if (!player.hasPermission("mobilecrafting.give")) {
+            Methods.info(sender, 'c', configLib.lang("commands.opOnly"));
             return true;
         }
 

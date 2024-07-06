@@ -8,6 +8,6 @@ depend: [ ILMLib ]
 main: de.max.mobilecrafting.init.MobileCrafting
 api-version: 1.20
 commands:
-  mobilecraft:
+  givemobilecrafter:
     description: /give equivalent for the crafter item
-    usage: /mobilecraft
+    usage: /givemobilecrafter

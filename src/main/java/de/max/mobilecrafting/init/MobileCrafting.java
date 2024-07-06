@@ -2,7 +2,7 @@ package de.max.mobilecrafting.init;
 
 import de.max.ilmlib.init.ConfigLib;
 import de.max.ilmlib.init.ILMLib;
-import de.max.mobilecrafting.commands.MobileCraft;
+import de.max.mobilecrafting.commands.GiveMobileCrafter;
 import de.max.mobilecrafting.events.*;
 import de.max.mobilecrafting.inventories.Recipe;
 import org.bukkit.Bukkit;
@@ -41,7 +41,7 @@ public final class MobileCrafting extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(), plugin);
         getServer().getPluginManager().registerEvents(new PlayerQuit(), plugin);
 
-        Objects.requireNonNull(getCommand("mobilecraft")).setExecutor(new MobileCraft());
+        Objects.requireNonNull(getCommand("givemobilecrafter")).setExecutor(new GiveMobileCrafter());
 
         Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("general.init"));
     }

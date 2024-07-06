@@ -9,8 +9,10 @@
 
 general:
   init: "" # [MobileCrafting] has been loaded successfully!
-  playerOnly: "" # Only players can execute this command.
-  opOnly: "" # Only players with OP or similar can execute this command.
+commands:
+  playerOnly: "" # Only players can execute this command!
+  opOnly: "" # Only players with OP or similar can execute this command!
+  tooManyArgs: "" # You provided too many arguments!
 interface:
   mobileCraftingName: "" # Mobile Crafting
   mobileCraftingLore: "" # Contains Crafting Table and Furnace
