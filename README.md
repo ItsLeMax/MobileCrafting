@@ -16,6 +16,7 @@ Adds an item to minecraft that contains crafting menus\
 ## Permissions
 
 - `mobilecrafting.give` to use the `givemobilecrafter` command
+![1 2 1-permission](https://github.com/user-attachments/assets/2e286012-e5d3-4611-b8ab-5adf9545732a)
 
 ## Recipe
 
