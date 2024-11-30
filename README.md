@@ -1,6 +1,6 @@
 # MobileCrafting
 
-Adds an item to minecraft that contains crafting menus
+Adds an item to minecraft that contains crafting menus\
 ![readme-interface](https://github.com/user-attachments/assets/623b16d1-a03b-4616-a7ca-48ec75595fff)
 
 > [!NOTE]
