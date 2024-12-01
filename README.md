@@ -11,8 +11,8 @@ Adds an item to minecraft that contains crafting menus\
 
 1. Download the latest jar files [here](https://github.com/ItsLeMax/MobileCrafting/releases/latest)\
 ![1 0 0-download](https://github.com/user-attachments/assets/b75311be-2eaf-4b2c-a4dc-0f41331222c6)
-2. Put them into the plugins folder of your server
-![plugins](https://github.com/user-attachments/assets/7157a9e2-59cd-4662-aa2f-bc6c2b32f603)
+2. Put them into the plugins folder of your server\
+![plugins](https://github.com/user-attachments/assets/914227c9-bf45-4a8e-909d-1af51b914305)
 
 ## Permissions
 
