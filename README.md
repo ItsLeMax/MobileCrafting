@@ -15,7 +15,7 @@ Adds an item to minecraft that contains crafting menus\
 ![1 0 0-download](https://github.com/user-attachments/assets/11645133-2b4d-46fc-b694-bb923f463593)
 2. Put them into the plugins folder of your server\
 ![plugins](https://github.com/user-attachments/assets/914227c9-bf45-4a8e-909d-1af51b914305)
-3. (Optional) Change settings of the `DeathLink/config.yml` as you wish\
+3. (Optional) Change settings of the `MobileCrafting/config.yml` as you wish\
 ![1 0 0-config](https://github.com/user-attachments/assets/c6caf0ac-61ff-47b9-879e-71252467d17d)
 
 ## Permissions
