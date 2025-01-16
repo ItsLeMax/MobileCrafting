@@ -26,7 +26,7 @@ public class GiveMobileCrafter implements CommandExecutor {
         }
 
         if (args.length > 0) {
-            messageLib.sendInfo(sender, MessageLib.Template.ERROR, configLib.lang("commands.tooManyArgs"), new HoverText("/givemobilecrafter"));
+            messageLib.sendInfo(player, MessageLib.Template.ERROR, configLib.lang("commands.tooManyArgs"), new HoverText("/givemobilecrafter"));
             return true;
         }
 
