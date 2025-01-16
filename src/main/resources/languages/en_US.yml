@@ -1,9 +1,13 @@
-general:
-  init: "[MobileCrafting] has been loaded successfully!"
+# Do not touch %% as it does get replaced from the plugin!
+
+init: "%p% has been loaded successfully!"
 commands:
-  playerOnly: "Only players can execute this command!"
-  opOnly: "Only players with OP or similar can execute this command!"
+  success: "Success!"
+  error: "Error!"
   tooManyArgs: "You provided too many arguments!"
+  playerOnly: "Only players can execute this command!"
+  opOnly: "You do not have the permission to execute this command!"
+  granted: "You have received a mobile crafting table."
 interface:
   mobileCraftingName: "Mobile Crafting"
   mobileCraftingLore: "Contains Crafting Table and Furnace"

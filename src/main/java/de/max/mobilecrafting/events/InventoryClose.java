@@ -6,7 +6,6 @@ import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
 import java.util.Objects;
-import java.util.UUID;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
 import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
@@ -37,10 +36,8 @@ public class InventoryClose implements Listener {
      * @author ItsLeMax
      */
     private static boolean clickedInventoryEquals(InventoryCloseEvent event, String... GUIs) {
-        UUID uuid = event.getPlayer().getUniqueId();
-
         for (String GUI : GUIs) {
-            if (Objects.equals(event.getInventory(), playerCache.get(uuid).get(GUI))) {
+            if (Objects.equals(event.getInventory(), playerCache.get(event.getPlayer().getUniqueId()).get(GUI))) {
                 return true;
             }
         }

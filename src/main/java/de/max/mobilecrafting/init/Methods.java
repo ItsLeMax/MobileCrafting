@@ -1,7 +1,6 @@
 package de.max.mobilecrafting.init;
 
 import org.bukkit.Bukkit;
-import org.bukkit.command.CommandSender;
 import org.bukkit.event.inventory.InventoryType;
 
 import java.util.HashMap;
@@ -11,26 +10,6 @@ import static de.max.mobilecrafting.init.MobileCrafting.configLib;
 import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class Methods {
-    /**
-     * Sendet Informationen an den Benutzer
-     * <p>
-     * Sends information to the user
-     *
-     * @param colorCode Farbcode, welche verwendet wird
-     *                  <p>
-     *                  Color code, which will be used
-     * @param message   Nachricht, welche an den Benutzer gesendet wird
-     *                  <p>
-     *                  Message, that will be sent to the user
-     * @author ItsLeMax
-     */
-    public static void info(CommandSender sender, char colorCode, String message) {
-        sender.sendMessage("");
-        sender.sendMessage("§8> §6MobileCrafting");
-        sender.sendMessage("§" + colorCode + message);
-        sender.sendMessage("");
-    }
-
     /**
      * Erstellt den Inventarcache
      * <p>

@@ -1,7 +1,9 @@
 package de.max.mobilecrafting.init;
 
-import de.max.ilmlib.init.ILMLib;
 import de.max.ilmlib.libraries.ConfigLib;
+import de.max.ilmlib.libraries.MessageLib;
+import de.max.ilmlib.utility.ErrorTemplate;
+import de.max.ilmlib.utility.SuccessTemplate;
 import de.max.mobilecrafting.commands.GiveMobileCrafter;
 import de.max.mobilecrafting.events.*;
 import de.max.mobilecrafting.inventories.Recipe;
@@ -16,16 +18,26 @@ import java.util.UUID;
 public final class MobileCrafting extends JavaPlugin {
     public static MobileCrafting plugin;
     public static HashMap<UUID, HashMap<String, Object>> playerCache = new HashMap<>();
+
     public static ConfigLib configLib;
+    public static MessageLib messageLib;
 
     @Override
     public void onEnable() {
         plugin = this;
 
-        configLib = new ILMLib(plugin).getConfigLib();
-        configLib
+        configLib = new ConfigLib()
+                .setPlugin(this)
                 .createDefaults("config", "storage")
                 .createInsideDirectory("languages", "de_DE", "en_US", "custom_lang");
+
+        messageLib = new MessageLib()
+                .addSpacing()
+                .createDefaults()
+                .setPrefix("§cMobileCrafting §7»", true);
+
+        new SuccessTemplate().setSuffix(configLib.lang("commands.success"));
+        new ErrorTemplate().setSuffix(configLib.lang("commands.error"));
 
         Recipe.register();
 
@@ -34,16 +46,16 @@ public final class MobileCrafting extends JavaPlugin {
             Methods.createCache(player.getUniqueId());
         }
 
-        getServer().getPluginManager().registerEvents(new BlockPlace(), plugin);
-        getServer().getPluginManager().registerEvents(new InventoryClick(), plugin);
-        getServer().getPluginManager().registerEvents(new InventoryClose(), plugin);
-        getServer().getPluginManager().registerEvents(new PlayerInteract(), plugin);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(), plugin);
-        getServer().getPluginManager().registerEvents(new PlayerQuit(), plugin);
+        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(), this);
+        getServer().getPluginManager().registerEvents(new InventoryClose(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
 
         Objects.requireNonNull(getCommand("givemobilecrafter")).setExecutor(new GiveMobileCrafter());
 
-        Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("general.init"));
+        Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("init").replace("%p%", "[MobileCrafting]"));
     }
 
     /**

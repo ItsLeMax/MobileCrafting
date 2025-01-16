@@ -1,3 +1,5 @@
+# Do not touch %% as it does get replaced from the plugin!
+
 # You can use this file to translate it into other languages that are not provided.
 # The english "original" is behind each text.
 
@@ -7,12 +9,14 @@
 # GitHub: https://github.com/ItsLeMax/StorageTerminal/
 # Socials: @ItsLeMax
 
-general:
-  init: "" # [MobileCrafting] has been loaded successfully!
+init: "" # %p% has been loaded successfully!
 commands:
-  playerOnly: "" # Only players can execute this command!
-  opOnly: "" # Only players with OP or similar can execute this command!
+  success: "" # Success!
+  error: "" # Error!
   tooManyArgs: "" # You provided too many arguments!
+  playerOnly: "" # Only players can execute this command!
+  opOnly: "" # You do not have the permission to execute this command!
+  granted: "" # You have received a mobile crafting table.
 interface:
   mobileCraftingName: "" # Mobile Crafting
   mobileCraftingLore: "" # Contains Crafting Table and Furnace

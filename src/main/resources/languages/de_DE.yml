@@ -1,9 +1,13 @@
-general:
-  init: "[MobileCrafting] wurde erfolgreich geladen!"
+# Lass die Finger von %%, da es vom Plugin ersetzt wird!
+
+init: "%p% wurde erfolgreich geladen!"
 commands:
-  playerOnly: "Nur Spieler können diesen Befehl ausführen!"
-  opOnly: "Nur Spieler mit OP o.ä. können diesen Befehl ausführen!"
+  success: "Erfolg!"
+  error: "Fehler!"
   tooManyArgs: "Du hast zu viele Argumente angegeben!"
+  playerOnly: "Nur Spieler können diesen Befehl ausführen!"
+  opOnly: "Du hast nicht die Berechtigung, diesen Befehl auszuführen!"
+  granted: "Du hast eine mobile Werkbank erhalten."
 interface:
   mobileCraftingName: "Mobile Herstellung"
   mobileCraftingLore: "Enthält Werkbank und Ofen"
