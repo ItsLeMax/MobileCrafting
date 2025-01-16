@@ -4,9 +4,9 @@ init: "%p% wurde erfolgreich geladen!"
 commands:
   success: "Erfolg!"
   error: "Fehler!"
-  tooManyArgs: "Du hast zu viele Argumente angegeben!"
-  playerOnly: "Nur Spieler können diesen Befehl ausführen!"
   opOnly: "Du hast nicht die Berechtigung, diesen Befehl auszuführen!"
+  playerOnly: "Nur Spieler können diesen Befehl ausführen!"
+  tooManyArgs: "Du hast zu viele Argumente angegeben!"
   granted: "Du hast eine mobile Werkbank erhalten."
 interface:
   mobileCraftingName: "Mobile Herstellung"

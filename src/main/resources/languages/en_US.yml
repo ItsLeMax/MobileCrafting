@@ -4,9 +4,9 @@ init: "%p% has been loaded successfully!"
 commands:
   success: "Success!"
   error: "Error!"
-  tooManyArgs: "You provided too many arguments!"
-  playerOnly: "Only players can execute this command!"
   opOnly: "You do not have the permission to execute this command!"
+  playerOnly: "Only players can execute this command!"
+  tooManyArgs: "You provided too many arguments!"
   granted: "You have received a mobile crafting table."
 interface:
   mobileCraftingName: "Mobile Crafting"

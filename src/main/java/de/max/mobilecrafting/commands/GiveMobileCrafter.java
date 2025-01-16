@@ -15,8 +15,8 @@ import static de.max.mobilecrafting.init.MobileCrafting.messageLib;
 public class GiveMobileCrafter implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
-        if (args.length > 0) {
-            messageLib.sendInfo(sender, MessageLib.Template.ERROR, configLib.lang("commands.tooManyArgs"), new HoverText("/givemobilecrafter"));
+        if (!sender.hasPermission("mobilecrafting.give")) {
+            messageLib.sendInfo(sender, MessageLib.Template.ERROR, configLib.lang("commands.opOnly"));
             return true;
         }
 
@@ -25,8 +25,8 @@ public class GiveMobileCrafter implements CommandExecutor {
             return true;
         }
 
-        if (!player.hasPermission("mobilecrafting.give")) {
-            messageLib.sendInfo(player, MessageLib.Template.ERROR, configLib.lang("commands.opOnly"));
+        if (args.length > 0) {
+            messageLib.sendInfo(sender, MessageLib.Template.ERROR, configLib.lang("commands.tooManyArgs"), new HoverText("/givemobilecrafter"));
             return true;
         }
 
