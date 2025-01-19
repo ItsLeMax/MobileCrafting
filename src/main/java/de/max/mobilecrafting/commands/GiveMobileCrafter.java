@@ -1,7 +1,7 @@
 package de.max.mobilecrafting.commands;
 
+import de.max.ilmlib.init.HoverText;
 import de.max.ilmlib.libraries.MessageLib;
-import de.max.ilmlib.utility.HoverText;
 import de.max.mobilecrafting.inventories.Recipe;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

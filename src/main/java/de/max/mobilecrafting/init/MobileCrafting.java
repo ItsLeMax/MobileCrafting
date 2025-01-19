@@ -2,8 +2,6 @@ package de.max.mobilecrafting.init;
 
 import de.max.ilmlib.libraries.ConfigLib;
 import de.max.ilmlib.libraries.MessageLib;
-import de.max.ilmlib.utility.ErrorTemplate;
-import de.max.ilmlib.utility.SuccessTemplate;
 import de.max.mobilecrafting.commands.GiveMobileCrafter;
 import de.max.mobilecrafting.events.*;
 import de.max.mobilecrafting.inventories.Recipe;
@@ -26,18 +24,22 @@ public final class MobileCrafting extends JavaPlugin {
     public void onEnable() {
         plugin = this;
 
-        configLib = new ConfigLib()
-                .setPlugin(this)
+        configLib = new ConfigLib(this)
                 .createDefaults("config", "storage")
                 .createInsideDirectory("languages", "de_DE", "en_US", "custom_lang");
 
         messageLib = new MessageLib()
                 .addSpacing()
                 .createDefaults()
-                .setPrefix("§cMobileCrafting §7»", true);
-
-        new SuccessTemplate().setSuffix(configLib.lang("commands.success"));
-        new ErrorTemplate().setSuffix(configLib.lang("commands.error"));
+                .setPrefix("§cMobileCrafting §7»", true)
+                .setFormattingCode(new HashMap<>() {{
+                    put(MessageLib.Template.SUCCESS, '9');
+                    put(MessageLib.Template.ERROR, '4');
+                }})
+                .setSuffix(new HashMap<>() {{
+                    put(MessageLib.Template.SUCCESS, configLib.lang("commands.success"));
+                    put(MessageLib.Template.ERROR, configLib.lang("commands.error"));
+                }});
 
         Recipe.register();
 
