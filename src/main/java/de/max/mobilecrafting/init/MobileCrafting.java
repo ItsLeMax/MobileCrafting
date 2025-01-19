@@ -30,8 +30,8 @@ public final class MobileCrafting extends JavaPlugin {
 
         messageLib = new MessageLib()
                 .addSpacing()
-                .createDefaults()
                 .setPrefix("§cMobileCrafting §7»", true)
+                .createDefaults()
                 .setSuffix(new HashMap<>() {{
                     put(MessageLib.Template.SUCCESS, configLib.lang("commands.success"));
                     put(MessageLib.Template.ERROR, configLib.lang("commands.error"));
