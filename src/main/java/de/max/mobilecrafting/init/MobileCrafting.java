@@ -32,10 +32,6 @@ public final class MobileCrafting extends JavaPlugin {
                 .addSpacing()
                 .createDefaults()
                 .setPrefix("§cMobileCrafting §7»", true)
-                .setFormattingCode(new HashMap<>() {{
-                    put(MessageLib.Template.SUCCESS, '9');
-                    put(MessageLib.Template.ERROR, '4');
-                }})
                 .setSuffix(new HashMap<>() {{
                     put(MessageLib.Template.SUCCESS, configLib.lang("commands.success"));
                     put(MessageLib.Template.ERROR, configLib.lang("commands.error"));
