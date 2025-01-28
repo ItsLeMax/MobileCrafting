@@ -22,12 +22,12 @@ public class GUI {
         Inventory inventory = (Inventory) playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
-        boolean hasFurnace = configLib.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
-
         inventory.setItem(3, itemLib
                 .setItem(Material.CRAFTING_TABLE)
                 .setName("§c" + configLib.lang("interface.workbenchTitle"))
                 .create());
+
+        boolean hasFurnace = configLib.getConfig("storage").getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
 
         itemLib
                 .setItem(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE)
