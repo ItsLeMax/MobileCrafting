@@ -19,21 +19,21 @@ import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 public class InventoryClick implements Listener {
     @EventHandler
     public static void inventoryClick(InventoryClickEvent event) {
-        Player player = (Player) event.getView().getPlayer();
-        UUID uuid = player.getUniqueId();
-
         ItemStack clickedItem = event.getCurrentItem();
         Inventory clickedInventory = event.getClickedInventory();
 
+        if (clickedItem == null || clickedInventory == null) {
+            return;
+        }
+
+        Player player = (Player) event.getView().getPlayer();
+        UUID uuid = player.getUniqueId();
+
         if (event.getInventory().equals(playerCache.get(uuid).get("WORKBENCH")) && event.isShiftClick()) {
-            if (clickedInventory != null && clickedInventory.getType().equals(InventoryType.PLAYER)) {
+            if (clickedInventory.getType().equals(InventoryType.PLAYER)) {
                 event.setCancelled(true);
                 return;
             }
-        }
-
-        if (clickedItem == null || clickedInventory == null) {
-            return;
         }
 
         if (!clickedInventory.equals(playerCache.get(uuid).get("MENU"))) {
@@ -68,6 +68,7 @@ public class InventoryClick implements Listener {
 
         String subMenuType = clickedItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) subMenuType = "WORKBENCH";
+
         player.openInventory((Inventory) playerCache.get(uuid).get(subMenuType));
 
         Sound sound = switch (clickedItem.getType()) {
@@ -79,11 +80,11 @@ public class InventoryClick implements Listener {
         player.playSound(player.getLocation(), sound, 1, 1);
         Inventory openedSubMenu = ((Inventory) playerCache.get(uuid).get(subMenuType));
 
-        for (int index = 0; index < openedSubMenu.getType().getDefaultSize(); index++) {
-            ItemStack craftingItem = (ItemStack) configLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + index);
+        for (int slot = 0; slot < openedSubMenu.getType().getDefaultSize(); slot++) {
+            ItemStack craftingItem = (ItemStack) configLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + slot);
             if (craftingItem == null) continue;
 
-            openedSubMenu.setItem(index, craftingItem);
+            openedSubMenu.setItem(slot, craftingItem);
         }
     }
 }

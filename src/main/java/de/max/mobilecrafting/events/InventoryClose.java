@@ -5,7 +5,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
 
-import java.util.Objects;
 import java.util.UUID;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
@@ -18,12 +17,12 @@ public class InventoryClose implements Listener {
         UUID uuid = event.getPlayer().getUniqueId();
 
         for (String craftGUI : new String[]{"FURNACE", "WORKBENCH"}) {
-            if (!Objects.equals(inventory, playerCache.get(uuid).get(craftGUI))) {
+            if (!inventory.equals(playerCache.get(uuid).get(craftGUI))) {
                 continue;
             }
 
-            for (int index = 0; index < inventory.getType().getDefaultSize(); index++) {
-                configLib.getConfig("storage").set(uuid + ".Inventory." + inventory.getType() + "." + index, inventory.getItem(index));
+            for (int slot = 0; slot < inventory.getType().getDefaultSize(); slot++) {
+                configLib.getConfig("storage").set(uuid + ".Inventory." + inventory.getType() + "." + slot, inventory.getItem(slot));
             }
 
             configLib.save("storage");

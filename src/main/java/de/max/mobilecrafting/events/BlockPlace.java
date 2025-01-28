@@ -8,8 +8,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 public class BlockPlace implements Listener {
     @EventHandler
     public static void blockPlace(BlockPlaceEvent event) {
-        if (event.getItemInHand().equals(Recipe.crafter)) {
-            event.setCancelled(true);
-        }
+        if (!event.getItemInHand().equals(Recipe.crafter)) return;
+        event.setCancelled(true);
     }
 }
