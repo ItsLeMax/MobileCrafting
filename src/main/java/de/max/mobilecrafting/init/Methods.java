@@ -23,4 +23,16 @@ public class Methods {
         playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + configLib.lang("interface.workbenchTitle")));
         playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + configLib.lang("interface.furnaceTitle")));
     }
+
+    /**
+     * Sendet den Cache in Intervallen in die Konsole
+     * <p>
+     * Sends the cache in intervals into the console
+     *
+     * @author ItsLeMax
+     */
+    @SuppressWarnings("unused")
+    private void log() {
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(MobileCrafting.plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + playerCache), 0, 200);
+    }
 }

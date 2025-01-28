@@ -55,16 +55,4 @@ public final class MobileCrafting extends JavaPlugin {
 
         Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("init").replace("%p%", "[MobileCrafting]"));
     }
-
-    /**
-     * Sendet den Cache in Intervallen in die Konsole
-     * <p>
-     * Sends the cache in intervals into the console
-     *
-     * @author ItsLeMax
-     */
-    @SuppressWarnings("unused")
-    private void log() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + playerCache), 0, 200);
-    }
 }
