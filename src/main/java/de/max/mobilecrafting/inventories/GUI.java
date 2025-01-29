@@ -39,10 +39,20 @@ public class GUI {
 
         inventory.setItem(5, itemLib.create());
 
-        for (int index = 0; index < 9; index++) {
-            if (inventory.getItem(index) != null) continue;
+        for (int slot = 0; slot < 9; slot++) {
+            if (inventory.getItem(slot) != null) {
+                continue;
+            }
 
-            inventory.setItem(index, new ItemLib()
+            if (slot == 0 || slot == 8) {
+                inventory.setItem(slot, itemLib
+                        .setItem(Material.BLACK_STAINED_GLASS_PANE)
+                        .setName("§7")
+                        .create());
+                continue;
+            }
+
+            inventory.setItem(slot, itemLib
                     .setItem(Material.GRAY_STAINED_GLASS_PANE)
                     .setName("§7")
                     .create());
