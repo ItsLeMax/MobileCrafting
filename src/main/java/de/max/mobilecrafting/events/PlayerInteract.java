@@ -2,6 +2,8 @@ package de.max.mobilecrafting.events;
 
 import de.max.mobilecrafting.inventories.GUI;
 import de.max.mobilecrafting.inventories.Recipe;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -15,6 +17,8 @@ public class PlayerInteract implements Listener {
         if (event.getHand() != EquipmentSlot.HAND) return;
         if (!Objects.equals(event.getItem(), Recipe.crafter)) return;
 
-        GUI.loadInventory(event.getPlayer());
+        Player player = event.getPlayer();
+        GUI.loadInventory(player);
+        player.playSound(player.getLocation(), Sound.BLOCK_CHEST_OPEN, 1, 1);
     }
 }
