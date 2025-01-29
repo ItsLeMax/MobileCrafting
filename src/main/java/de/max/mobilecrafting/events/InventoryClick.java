@@ -42,10 +42,6 @@ public class InventoryClick implements Listener {
 
         event.setCancelled(true);
 
-        if (clickedItem.getType().equals(Material.GRAY_STAINED_GLASS_PANE)) {
-            return;
-        }
-
         if (clickedItem.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
             ItemStack cursor = event.getCursor();
 
@@ -66,13 +62,17 @@ public class InventoryClick implements Listener {
             return;
         }
 
+        if (clickedItem.getType().toString().contains("STAINED_GLASS_PANE")) {
+            return;
+        }
+
         String subMenuType = clickedItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) subMenuType = "WORKBENCH";
 
         player.openInventory((Inventory) playerCache.get(uuid).get(subMenuType));
 
         Sound sound = switch (clickedItem.getType()) {
-            case CRAFTING_TABLE -> Sound.BLOCK_CHEST_OPEN;
+            case CRAFTING_TABLE -> Sound.BLOCK_WOOD_PLACE;
             case FURNACE -> Sound.ITEM_FIRECHARGE_USE;
             default -> throw new RuntimeException();
         };
@@ -82,7 +82,9 @@ public class InventoryClick implements Listener {
 
         for (int slot = 0; slot < openedSubMenu.getType().getDefaultSize(); slot++) {
             ItemStack craftingItem = (ItemStack) configLib.getConfig("storage").get(uuid + ".Inventory." + subMenuType + "." + slot);
-            if (craftingItem == null) continue;
+            if (craftingItem == null) {
+                continue;
+            }
 
             openedSubMenu.setItem(slot, craftingItem);
         }
