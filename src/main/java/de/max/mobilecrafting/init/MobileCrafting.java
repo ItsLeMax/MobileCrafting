@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
-import java.util.Objects;
 import java.util.UUID;
 
 public final class MobileCrafting extends JavaPlugin {
@@ -21,6 +20,7 @@ public final class MobileCrafting extends JavaPlugin {
     public static MessageLib messageLib;
 
     @Override
+    @SuppressWarnings("ConstantConditions")
     public void onEnable() {
         plugin = this;
 
@@ -51,7 +51,7 @@ public final class MobileCrafting extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
         getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
 
-        Objects.requireNonNull(getCommand("givemobilecrafter")).setExecutor(new GiveMobileCrafter());
+        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter());
 
         Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("init").replace("%p%", "[MobileCrafting]"));
     }
