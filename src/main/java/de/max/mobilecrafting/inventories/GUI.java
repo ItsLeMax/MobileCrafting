@@ -1,12 +1,12 @@
 package de.max.mobilecrafting.inventories;
 
 import de.max.ilmlib.libraries.ItemLib;
+import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
-import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class GUI {
     /**
@@ -19,7 +19,7 @@ public class GUI {
     public static void loadInventory(Player player) {
         ItemLib itemLib = new ItemLib();
 
-        Inventory inventory = (Inventory) playerCache.get(player.getUniqueId()).get("MENU");
+        Inventory inventory = (Inventory) MobileCrafting.playerCache.get(player.getUniqueId()).get("MENU");
         player.openInventory(inventory);
 
         inventory.setItem(3, itemLib

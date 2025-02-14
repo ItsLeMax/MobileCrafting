@@ -40,7 +40,10 @@ public final class MobileCrafting extends JavaPlugin {
         Recipe.register();
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (playerCache.get(player.getUniqueId()) != null) continue;
+            if (playerCache.get(player.getUniqueId()) != null) {
+                continue;
+            }
+
             Methods.createCache(player.getUniqueId());
         }
 

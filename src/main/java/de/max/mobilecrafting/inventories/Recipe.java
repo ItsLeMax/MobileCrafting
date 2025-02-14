@@ -1,6 +1,7 @@
 package de.max.mobilecrafting.inventories;
 
 import de.max.ilmlib.libraries.ItemLib;
+import de.max.mobilecrafting.init.MobileCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -9,7 +10,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
-import static de.max.mobilecrafting.init.MobileCrafting.plugin;
 
 public class Recipe {
     public static ItemStack crafter;
@@ -29,7 +29,7 @@ public class Recipe {
                 .addEnchantment(Enchantment.ARROW_INFINITE, true)
                 .create();
 
-        ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(plugin, "crafter"), crafter);
+        ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(MobileCrafting.plugin, "crafter"), crafter);
 
         crafterRecipe.shape("  W", "  B");
         crafterRecipe.setIngredient('W', Material.CRAFTING_TABLE);

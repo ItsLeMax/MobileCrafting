@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.UUID;
 
 import static de.max.mobilecrafting.init.MobileCrafting.configLib;
-import static de.max.mobilecrafting.init.MobileCrafting.playerCache;
 
 public class Methods {
     /**
@@ -18,10 +17,10 @@ public class Methods {
      * @author ItsLeMax
      */
     public static void createCache(UUID uuid) {
-        playerCache.put(uuid, new HashMap<>());
-        playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + configLib.lang("interface.mobileCraftingName")));
-        playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + configLib.lang("interface.workbenchTitle")));
-        playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + configLib.lang("interface.furnaceTitle")));
+        MobileCrafting.playerCache.put(uuid, new HashMap<>());
+        MobileCrafting.playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + configLib.lang("interface.mobileCraftingName")));
+        MobileCrafting.playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + configLib.lang("interface.workbenchTitle")));
+        MobileCrafting.playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + configLib.lang("interface.furnaceTitle")));
     }
 
     /**
@@ -33,6 +32,6 @@ public class Methods {
      */
     @SuppressWarnings("unused")
     private void log() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(MobileCrafting.plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + playerCache), 0, 200);
+        Bukkit.getScheduler().scheduleSyncRepeatingTask(MobileCrafting.plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + MobileCrafting.playerCache), 0, 200);
     }
 }

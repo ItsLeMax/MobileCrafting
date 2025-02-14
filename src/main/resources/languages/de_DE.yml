@@ -14,3 +14,4 @@ interface:
   workbenchTitle: "Mobile Werkbank"
   furnaceTitle: "Mobiler Ofen"
   unlockSlot: "Zum Freischalten besagtes Item hierauf legen"
+  progressName: "Resultierendes Item wird hier angezeigt"

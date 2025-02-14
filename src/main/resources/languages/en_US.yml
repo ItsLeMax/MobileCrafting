@@ -14,3 +14,4 @@ interface:
   workbenchTitle: "Mobile Crafting Table"
   furnaceTitle: "Mobile Furnace"
   unlockSlot: "Put said item on here to unlock"
+  progressName: "Result item will be displayed here"
