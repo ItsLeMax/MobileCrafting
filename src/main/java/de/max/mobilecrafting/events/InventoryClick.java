@@ -38,6 +38,8 @@ public class InventoryClick implements Listener {
         Player player = (Player) event.getView().getPlayer();
         UUID uuid = player.getUniqueId();
 
+        // Cancellation of unwanted behaviour
+
         for (Object cacheElement : MobileCrafting.playerCache.get(uuid).values()) {
             if (!(cacheElement instanceof Inventory)) {
                 continue;
@@ -59,13 +61,17 @@ public class InventoryClick implements Listener {
             }
         }
 
+        // Update interfaces if necessary
+
         if (clickedInventory.equals(MobileCrafting.playerCache.get(uuid).get("WORKBENCH"))) {
             workbenchCraftingLogic();
         }
 
         if (clickedInventory.equals(MobileCrafting.playerCache.get(uuid).get("FURNACE"))) {
-            furnaceSmeltingLogic(clickedItem, clickedInventory, uuid, player);
+            furnaceSmeltingLogic(player, clickedInventory);
         }
+
+        // Menu interaction handling
 
         if (!clickedInventory.equals(MobileCrafting.playerCache.get(uuid).get("MENU"))) {
             return;
@@ -99,6 +105,8 @@ public class InventoryClick implements Listener {
             return;
         }
 
+        // Opening the menus on click interaction with their items loaded etc.
+
         String subMenuType = clickedItem.getType().toString();
         if (subMenuType.equals("CRAFTING_TABLE")) {
             subMenuType = "WORKBENCH";
@@ -112,7 +120,7 @@ public class InventoryClick implements Listener {
         }
 
         if (subMenuType.equals("FURNACE")) {
-            furnaceSmeltingLogic(clickedItem, subMenu, uuid, player);
+            furnaceSmeltingLogic(player, subMenu);
         }
 
         Sound sound = switch (clickedItem.getType()) {
@@ -140,11 +148,7 @@ public class InventoryClick implements Listener {
         // WiP
     }
 
-    private static void furnaceSmeltingLogic(ItemStack clickedItem, Inventory subMenu, UUID uuid, Player player) {
-        if (!clickedItem.getType().equals(Material.FURNACE)) {
-            return;
-        }
-
+    private static void furnaceSmeltingLogic(Player player, Inventory subMenu) {
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 1, 1);
 
         ItemStack fuel = subMenu.getItem(0);
@@ -158,6 +162,8 @@ public class InventoryClick implements Listener {
                     .setLore(progressbar)
                     .create());
         }
+
+        UUID uuid = player.getUniqueId();
 
         if (fuel != null && smelt != null) {
             MobileCrafting.playerCache.get(uuid).put("schedulerDelayed", Bukkit.getScheduler().scheduleSyncDelayedTask(MobileCrafting.plugin, () -> {
@@ -185,6 +191,8 @@ public class InventoryClick implements Listener {
                 result.setAmount(fuel.getAmount());
             }, smeltingTime));
 
+            // Smelting process
+
             MobileCrafting.playerCache.get(uuid).put("schedulerProgress", 0);
             MobileCrafting.playerCache.get(uuid).put("schedulerRepeat", Bukkit.getScheduler().scheduleSyncRepeatingTask(MobileCrafting.plugin, () -> {
                 assert smelted != null;
@@ -202,6 +210,8 @@ public class InventoryClick implements Listener {
 
             return;
         }
+
+        // Reset on end (WiP)
 
         if (MobileCrafting.playerCache.get(uuid).get("schedulerDelayed") != null) {
             Bukkit.getScheduler().cancelTask((int) MobileCrafting.playerCache.get(uuid).get("schedulerDelayed"));
