@@ -48,7 +48,7 @@
 
                             <shadedArtifactAttached>false</shadedArtifactAttached>
                             <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <finalName>${project.name}-1.21_${project.version}</finalName>
+                            <finalName>${project.name}-1.20_${project.version}</finalName>
                             <minimizeJar>true</minimizeJar>
 
                             <relocations>
