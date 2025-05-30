@@ -1,38 +1,50 @@
 package de.fpm_studio.mobilecrafting.util;
 
-import de.fpm_studio.mobilecrafting.MobileCrafting;
-import org.bukkit.Bukkit;
-import org.bukkit.event.inventory.InventoryType;
+import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
+import com.github.stefvanschie.inventoryframework.gui.type.CraftingTableGui;
+import com.github.stefvanschie.inventoryframework.gui.type.FurnaceGui;
+import de.fpm_studio.ilmlib.libraries.ConfigLib;
+import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
+import de.fpm_studio.mobilecrafting.service.CacheService;
+import lombok.AllArgsConstructor;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
+/**
+ * Holds different utility methods
+ *
+ * @author ItsLeMax
+ * @since 1.0.0
+ */
+@AllArgsConstructor
+public final class Methods {
 
-public class Methods {
+    private final ConfigLib configLib;
+
     /**
-     * Erstellt den Inventarcache
-     * <p>
      * Creates the inventory cache
      *
+     * @param uuid UUID of the player to cache
      * @author ItsLeMax
      */
-    public static void createCache(UUID uuid) {
-        MobileCrafting.playerCache.put(uuid, new HashMap<>());
-        MobileCrafting.playerCache.get(uuid).put("MENU", Bukkit.createInventory(null, 9, "§c" + configLib.lang("interface.mobileCraftingName")));
-        MobileCrafting.playerCache.get(uuid).put("WORKBENCH", Bukkit.createInventory(null, InventoryType.WORKBENCH, "§c" + configLib.lang("interface.workbenchTitle")));
-        MobileCrafting.playerCache.get(uuid).put("FURNACE", Bukkit.createInventory(null, InventoryType.FURNACE, "§5" + configLib.lang("interface.furnaceTitle")));
+    public void createCache(@NotNull final UUID uuid) {
+
+        CacheService.playerCache.put(uuid, new HashMap<>());
+
+        // Creating all different custom / player related GUIs
+
+        final ChestGui menu = new ChestGui(9, "§c" + configLib.text("interface.mobileCraftingName"));
+        final CraftingTableGui craftingTable = new CraftingTableGui("§c" + configLib.text("interface.workbenchTitle"));
+        final FurnaceGui furnace = new FurnaceGui("§5" + configLib.text("interface.furnaceTitle"));
+
+        // Putting them into the cache of the player
+
+        CacheService.playerCache.get(uuid).put(CustomInventoryType.MENU, menu);
+        CacheService.playerCache.get(uuid).put(CustomInventoryType.WORKBENCH, craftingTable);
+        CacheService.playerCache.get(uuid).put(CustomInventoryType.FURNACE, furnace);
+
     }
 
-    /**
-     * Sendet den Cache in Intervallen in die Konsole
-     * <p>
-     * Sends the cache in intervals into the console
-     *
-     * @author ItsLeMax
-     */
-    @SuppressWarnings("unused")
-    private void log() {
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(MobileCrafting.plugin, () -> Bukkit.getConsoleSender().sendMessage("§8" + MobileCrafting.playerCache), 0, 200);
-    }
 }

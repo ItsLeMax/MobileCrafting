@@ -1,7 +1,9 @@
 package de.fpm_studio.mobilecrafting.events;
 
-import de.fpm_studio.mobilecrafting.MobileCrafting;
-import org.bukkit.Material;
+import de.fpm_studio.ilmlib.libraries.ConfigLib;
+import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
+import de.fpm_studio.mobilecrafting.service.CacheService;
+import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
@@ -10,36 +12,49 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.UUID;
 
-import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
+/**
+ * Holds code about saving items put into the menus
+ *
+ * @author ItsLeMax
+ * @since 1.0.0
+ */
+@AllArgsConstructor
+public final class InventoryClose implements Listener {
 
-public class InventoryClose implements Listener {
+    private final ConfigLib configLib;
+
     @EventHandler
-    public static void inventoryClose(InventoryCloseEvent event) {
-        Inventory inventory = event.getInventory();
-        UUID uuid = event.getPlayer().getUniqueId();
+    public void inventoryClose(InventoryCloseEvent event) {
 
-        for (String craftingTable : new String[]{"WORKBENCH", "FURNACE"}) {
-            if (!inventory.equals(MobileCrafting.playerCache.get(uuid).get(craftingTable))) {
+        final Inventory inventory = event.getInventory();
+        final UUID uuid = event.getPlayer().getUniqueId();
+
+        // Storing the items of the previously opened gui
+
+        for (final CustomInventoryType craftingTable : new CustomInventoryType[]{CustomInventoryType.WORKBENCH, CustomInventoryType.FURNACE}) {
+
+            if (!inventory.equals(CacheService.playerCache.get(uuid).get(craftingTable)))
                 continue;
-            }
+
+            // Each item of every slot
 
             for (int slot = 0; slot < inventory.getType().getDefaultSize(); slot++) {
-                if (inventory.getItem(slot) == null) {
-                    continue;
-                }
 
-                ItemStack item = inventory.getItem(slot);
+                if (inventory.getItem(slot) == null)
+                    continue;
+
+                final ItemStack item = inventory.getItem(slot);
                 assert item != null;
 
-                if (item.getType().equals(Material.RED_STAINED_GLASS_PANE)) {
-                    continue;
-                }
-
                 configLib.getConfig("storage").set(uuid + ".Inventory." + inventory.getType() + "." + slot, item);
+
             }
 
-            configLib.save("storage");
+            configLib.saveConfig("storage");
             break;
+
         }
+
     }
+
 }

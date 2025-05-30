@@ -1,63 +1,121 @@
 package de.fpm_studio.mobilecrafting;
 
-import de.fpm_studio.mobilecrafting.events.*;
-import de.fpm_studio.mobilecrafting.util.Methods;
-import de.max.ilmlib.libraries.ConfigLib;
-import de.max.ilmlib.libraries.MessageLib;
+import de.fpm_studio.ilmlib.libraries.ConfigLib;
+import de.fpm_studio.ilmlib.libraries.MessageLib;
+import de.fpm_studio.ilmlib.util.Template;
 import de.fpm_studio.mobilecrafting.commands.GiveMobileCrafter;
-import de.max.mobilecrafting.events.*;
+import de.fpm_studio.mobilecrafting.events.*;
+import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
 import de.fpm_studio.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.service.CacheService;
+import de.fpm_studio.mobilecrafting.util.Methods;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
-import java.util.UUID;
 
+/**
+ * Contains the plugin starting point
+ *
+ * @author ItsLeMax
+ * @since 1.0.0
+ */
 public final class MobileCrafting extends JavaPlugin {
-    public static MobileCrafting plugin;
-    public static HashMap<UUID, HashMap<String, Object>> playerCache = new HashMap<>();
 
-    public static ConfigLib configLib;
-    public static MessageLib messageLib;
+    private ConfigLib configLib;
+    private MessageLib messageLib;
+
+    private Methods methods;
+
+    private MobileCrafterGUI mobileCrafterGui;
+    private Recipe recipe;
 
     @Override
-    @SuppressWarnings("ConstantConditions")
     public void onEnable() {
-        plugin = this;
+
+        // Initializing custom libs
 
         configLib = new ConfigLib(this)
-                .createDefaults("config", "storage")
-                .createInsideDirectory("languages", "de_DE", "en_US", "custom_lang");
+                .createDefaultConfigs("config", "storage")
+                .createConfigsInsideDirectory("languages", "de_DE", "en_US", "custom_lang");
 
         messageLib = new MessageLib()
                 .addSpacing()
                 .setPrefix("§cMobileCrafting §7»", true)
-                .createDefaults()
+                .createTemplateDefaults()
                 .setSuffix(new HashMap<>() {{
-                    put(MessageLib.Template.SUCCESS, configLib.lang("commands.success"));
-                    put(MessageLib.Template.ERROR, configLib.lang("commands.error"));
+                    put(Template.SUCCESS, configLib.text("commands.success"));
+                    put(Template.ERROR, configLib.text("commands.error"));
                 }});
 
-        Recipe.register();
+        // Initializing classes
 
-        for (Player player : Bukkit.getOnlinePlayers()) {
-            if (playerCache.get(player.getUniqueId()) != null) {
-                continue;
-            }
+        methods = new Methods(configLib);
 
-            Methods.createCache(player.getUniqueId());
-        }
+        // Initializing inventories
 
-        getServer().getPluginManager().registerEvents(new BlockPlace(), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(), this);
-        getServer().getPluginManager().registerEvents(new InventoryClose(), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+        mobileCrafterGui = new MobileCrafterGUI(configLib);
+
+        recipe = new Recipe(this, configLib);
+        recipe.register();
+
+        // Special methods
+
+        registerCommands();
+        registerEvents();
+
+        reloadHandling();
+
+        Bukkit.getConsoleSender().sendMessage("§c" + configLib.text("init").replace("%p%", "[MobileCrafting]"));
+
+    }
+
+    /**
+     * Registers the plugins commands
+     *
+     * @author ItsLeMax
+     * @since Code: 1.0.0 <br> Method: 1.1.3
+     */
+    @SuppressWarnings("ConstantConditions")
+    private void registerCommands() {
+        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter(configLib, messageLib, recipe));
+    }
+
+    /**
+     * Registers the plugins events
+     *
+     * @author ItsLeMax
+     * @since Code: 1.0.0 <br> Method: 1.1.3
+     */
+    private void registerEvents() {
+
+        getServer().getPluginManager().registerEvents(new BlockPlace(recipe), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(configLib), this);
+        getServer().getPluginManager().registerEvents(new InventoryClose(configLib), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteract(recipe, mobileCrafterGui), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(methods), this);
         getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
 
-        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter());
-
-        Bukkit.getConsoleSender().sendMessage("§c" + configLib.lang("init").replace("%p%", "[MobileCrafting]"));
     }
+
+    /**
+     * Handles reloads and caching the players that are still online
+     *
+     * @author ItsLeMax
+     * @since Code: 1.0.0 <br> Method: 1.1.3
+     */
+    private void reloadHandling() {
+
+        for (final Player player : Bukkit.getOnlinePlayers()) {
+
+            if (CacheService.playerCache.get(player.getUniqueId()) != null)
+                continue;
+
+            methods.createCache(player.getUniqueId());
+
+        }
+
+    }
+
 }

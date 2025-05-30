@@ -1,7 +1,10 @@
 package de.fpm_studio.mobilecrafting.inventories;
 
-import de.max.ilmlib.libraries.ItemLib;
+import de.fpm_studio.ilmlib.libraries.ConfigLib;
+import de.fpm_studio.ilmlib.libraries.ItemLib;
 import de.fpm_studio.mobilecrafting.MobileCrafting;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -9,32 +12,46 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
+/**
+ * Contains the vanilla crafting recipe for the plugins item
+ *
+ * @author ItsLeMax
+ * @since 1.0.0
+ */
+@RequiredArgsConstructor
+public final class Recipe {
 
-public class Recipe {
-    public static ItemStack crafter;
+    private final MobileCrafting instance;
+    private final ConfigLib configLib;
+
+    @Getter
+    public ItemStack crafter;
 
     /**
-     * Registriert das Craftingrezept
-     * <p>
      * Registers the crafting recipe
      *
      * @author ItsLeMax
+     * @since 1.0.0
      */
-    public static void register() {
+    public void register() {
+
         crafter = new ItemLib()
                 .setItem(Material.CRAFTING_TABLE)
-                .setName("§c" + configLib.lang("interface.mobileCraftingName"))
-                .setLore("§7" + configLib.lang("interface.mobileCraftingLore"))
+                .setName("§c" + configLib.text("interface.mobileCraftingName"))
+                .setLore("§7" + configLib.text("interface.mobileCraftingLore"))
                 .addEnchantment(Enchantment.ARROW_INFINITE, true)
                 .create();
 
-        ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(MobileCrafting.plugin, "crafter"), crafter);
+        // Shape of the recipe item stacks
+
+        final ShapedRecipe crafterRecipe = new ShapedRecipe(new NamespacedKey(instance, "crafter"), crafter);
 
         crafterRecipe.shape("  W", "  B");
         crafterRecipe.setIngredient('W', Material.CRAFTING_TABLE);
         crafterRecipe.setIngredient('B', Material.BARREL);
 
         Bukkit.addRecipe(crafterRecipe);
+
     }
+
 }
