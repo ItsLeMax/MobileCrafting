@@ -37,7 +37,7 @@ public final class Methods {
 
         // Creating all different custom / player related GUIs
 
-        final ChestGui menu = new ChestGui(9, "§c" + configLib.text("interface.mobileCraftingName"));
+        final ChestGui menu = new ChestGui(1, "§c" + configLib.text("interface.mobileCraftingName"));
         final CraftingTableGui craftingTable = new CraftingTableGui("§c" + configLib.text("interface.workbenchTitle"));
         final FurnaceGui furnace = new FurnaceGui("§5" + configLib.text("interface.furnaceTitle"));
 

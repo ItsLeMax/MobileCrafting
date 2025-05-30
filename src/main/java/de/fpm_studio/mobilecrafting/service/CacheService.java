@@ -14,5 +14,7 @@ import java.util.UUID;
  */
 @Getter
 public final class CacheService {
+
     private final HashMap<UUID, HashMap<CustomInventoryType, Object>> playerCache = new HashMap<>();
+
 }
