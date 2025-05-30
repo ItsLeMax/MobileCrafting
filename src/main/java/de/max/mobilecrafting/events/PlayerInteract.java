@@ -9,13 +9,16 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 
-import java.util.Objects;
-
 public class PlayerInteract implements Listener {
     @EventHandler
     public static void playerInteract(PlayerInteractEvent event) {
-        if (event.getHand() != EquipmentSlot.HAND) return;
-        if (!Objects.equals(event.getItem(), Recipe.crafter)) return;
+        if (event.getHand() != EquipmentSlot.HAND) {
+            return;
+        }
+
+        if (event.getItem() != null && !event.getItem().equals(Recipe.crafter)) {
+            return;
+        }
 
         Player player = event.getPlayer();
         GUI.loadInventory(player);
