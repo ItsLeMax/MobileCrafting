@@ -1,12 +1,12 @@
-package de.max.mobilecrafting.inventories;
+package de.fpm_studio.mobilecrafting.inventories;
 
 import de.max.ilmlib.libraries.ItemLib;
-import de.max.mobilecrafting.init.MobileCrafting;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 
-import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
 
 public class GUI {
     /**

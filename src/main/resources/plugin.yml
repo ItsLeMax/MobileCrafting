@@ -5,7 +5,7 @@ version: ${project.version}
 website: ${project.url}
 
 depend: [ ILMLib ]
-main: de.max.mobilecrafting.init.MobileCrafting
+main: de.fpm_studio.mobilecrafting.MobileCrafting
 api-version: 1.20
 commands:
   givemobilecrafter:

@@ -1,16 +1,16 @@
-package de.max.mobilecrafting.commands;
+package de.fpm_studio.mobilecrafting.commands;
 
 import de.max.ilmlib.init.HoverText;
 import de.max.ilmlib.libraries.MessageLib;
-import de.max.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import static de.max.mobilecrafting.init.MobileCrafting.configLib;
-import static de.max.mobilecrafting.init.MobileCrafting.messageLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.messageLib;
 
 public class GiveMobileCrafter implements CommandExecutor {
     @Override

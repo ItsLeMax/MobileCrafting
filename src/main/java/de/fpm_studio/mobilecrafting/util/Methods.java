@@ -1,12 +1,13 @@
-package de.max.mobilecrafting.init;
+package de.fpm_studio.mobilecrafting.util;
 
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.event.inventory.InventoryType;
 
 import java.util.HashMap;
 import java.util.UUID;
 
-import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
 
 public class Methods {
     /**

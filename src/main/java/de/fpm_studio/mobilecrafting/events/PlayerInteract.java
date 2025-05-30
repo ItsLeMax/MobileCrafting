@@ -1,7 +1,7 @@
-package de.max.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.events;
 
-import de.max.mobilecrafting.inventories.GUI;
-import de.max.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.inventories.GUI;
+import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

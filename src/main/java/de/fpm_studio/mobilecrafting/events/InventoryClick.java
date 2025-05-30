@@ -1,8 +1,8 @@
-package de.max.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.events;
 
 import de.max.ilmlib.libraries.ItemLib;
-import de.max.mobilecrafting.init.MobileCrafting;
-import de.max.mobilecrafting.inventories.GUI;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
+import de.fpm_studio.mobilecrafting.inventories.GUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -20,7 +20,7 @@ import org.bukkit.inventory.Recipe;
 import java.util.Iterator;
 import java.util.UUID;
 
-import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
 
 public class InventoryClick implements Listener {
     private static final int smeltingTime = 600 / 4; // "/ 4" == Test

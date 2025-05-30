@@ -1,7 +1,7 @@
-package de.max.mobilecrafting.inventories;
+package de.fpm_studio.mobilecrafting.inventories;
 
 import de.max.ilmlib.libraries.ItemLib;
-import de.max.mobilecrafting.init.MobileCrafting;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
@@ -9,7 +9,7 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
 
-import static de.max.mobilecrafting.init.MobileCrafting.configLib;
+import static de.fpm_studio.mobilecrafting.MobileCrafting.configLib;
 
 public class Recipe {
     public static ItemStack crafter;

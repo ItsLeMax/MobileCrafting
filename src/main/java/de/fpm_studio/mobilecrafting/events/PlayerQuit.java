@@ -1,6 +1,6 @@
-package de.max.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.events;
 
-import de.max.mobilecrafting.init.MobileCrafting;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;

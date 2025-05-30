@@ -1,6 +1,6 @@
-package de.max.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.events;
 
-import de.max.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;

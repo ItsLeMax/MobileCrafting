@@ -1,10 +1,12 @@
-package de.max.mobilecrafting.init;
+package de.fpm_studio.mobilecrafting;
 
+import de.fpm_studio.mobilecrafting.events.*;
+import de.fpm_studio.mobilecrafting.util.Methods;
 import de.max.ilmlib.libraries.ConfigLib;
 import de.max.ilmlib.libraries.MessageLib;
-import de.max.mobilecrafting.commands.GiveMobileCrafter;
+import de.fpm_studio.mobilecrafting.commands.GiveMobileCrafter;
 import de.max.mobilecrafting.events.*;
-import de.max.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
