@@ -20,6 +20,7 @@ import org.jetbrains.annotations.NotNull;
 public final class MobileCrafterGUI {
 
     private final ConfigLib configLib;
+    private final CacheService cacheService;
 
     /**
      * Loads the GUI of the menu
@@ -34,7 +35,7 @@ public final class MobileCrafterGUI {
 
         // Loading the player bound mobile crafter main menu...
 
-        final Inventory inventory = (Inventory) CacheService.playerCache
+        final Inventory inventory = (Inventory) cacheService.getPlayerCache()
                 .get(player.getUniqueId()).get(CustomInventoryType.MENU);
 
         player.openInventory(inventory);

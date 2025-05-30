@@ -22,6 +22,7 @@ import java.util.UUID;
 public final class InventoryClose implements Listener {
 
     private final ConfigLib configLib;
+    private final CacheService cacheService;
 
     @EventHandler
     public void inventoryClose(InventoryCloseEvent event) {
@@ -31,9 +32,12 @@ public final class InventoryClose implements Listener {
 
         // Storing the items of the previously opened gui
 
-        for (final CustomInventoryType craftingTable : new CustomInventoryType[]{CustomInventoryType.WORKBENCH, CustomInventoryType.FURNACE}) {
+        for (final CustomInventoryType craftingTable : new CustomInventoryType[]{
+                CustomInventoryType.WORKBENCH,
+                CustomInventoryType.FURNACE
+        }) {
 
-            if (!inventory.equals(CacheService.playerCache.get(uuid).get(craftingTable)))
+            if (!inventory.equals(cacheService.getPlayerCache().get(uuid).get(craftingTable)))
                 continue;
 
             // Each item of every slot

@@ -26,6 +26,7 @@ import java.util.UUID;
 public final class InventoryClick implements Listener {
 
     private final ConfigLib configLib;
+    private final CacheService cacheService;
 
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {
@@ -41,7 +42,7 @@ public final class InventoryClick implements Listener {
 
         // Fix of a duplication issue
 
-        if (event.getInventory().equals(CacheService.playerCache.get(uuid).get(CustomInventoryType.WORKBENCH)) && event.isShiftClick()) {
+        if (event.getInventory().equals(cacheService.getPlayerCache().get(uuid).get(CustomInventoryType.WORKBENCH)) && event.isShiftClick()) {
 
             if (!clickedInventory.getType().equals(InventoryType.PLAYER))
                 return;
@@ -52,7 +53,7 @@ public final class InventoryClick implements Listener {
 
         // Menu interaction handling
 
-        if (!clickedInventory.equals(CacheService.playerCache.get(uuid).get(CustomInventoryType.MENU)))
+        if (!clickedInventory.equals(cacheService.getPlayerCache().get(uuid).get(CustomInventoryType.MENU)))
             return;
 
         event.setCancelled(true);
@@ -62,12 +63,13 @@ public final class InventoryClick implements Listener {
 
         // Opening each menu on click interaction
 
-        CustomInventoryType subMenuType = switch (clickedItem.getType().toString()) {
-            case "CRAFTING_TABLE" -> CustomInventoryType.WORKBENCH;
-            default -> CustomInventoryType.valueOf(clickedInventory.getType().toString());
-        };
+        CustomInventoryType subMenuType = CustomInventoryType.valueOf(clickedInventory.getType().toString());
 
-        final Inventory subMenu = ((Inventory) CacheService.playerCache.get(uuid).get(subMenuType));
+        if (clickedItem.getType().toString().equals("CRAFTING_TABLE")) {
+            subMenuType = CustomInventoryType.WORKBENCH;
+        }
+
+        final Inventory subMenu = ((Inventory) cacheService.getPlayerCache().get(uuid).get(subMenuType));
         player.openInventory(subMenu);
 
         // QoL

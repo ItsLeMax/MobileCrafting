@@ -26,6 +26,8 @@ public final class MobileCrafting extends JavaPlugin {
     private ConfigLib configLib;
     private MessageLib messageLib;
 
+    private CacheService cacheService;
+
     private Methods methods;
 
     private MobileCrafterGUI mobileCrafterGui;
@@ -49,13 +51,17 @@ public final class MobileCrafting extends JavaPlugin {
                     put(Template.ERROR, configLib.text("commands.error"));
                 }});
 
+        // Initializing services
+
+        cacheService = new CacheService();
+
         // Initializing classes
 
-        methods = new Methods(configLib);
+        methods = new Methods(configLib, cacheService);
 
         // Initializing inventories
 
-        mobileCrafterGui = new MobileCrafterGUI(configLib);
+        mobileCrafterGui = new MobileCrafterGUI(configLib, cacheService);
 
         recipe = new Recipe(this, configLib);
         recipe.register();
@@ -91,11 +97,11 @@ public final class MobileCrafting extends JavaPlugin {
     private void registerEvents() {
 
         getServer().getPluginManager().registerEvents(new BlockPlace(recipe), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(configLib), this);
-        getServer().getPluginManager().registerEvents(new InventoryClose(configLib), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(configLib, cacheService), this);
+        getServer().getPluginManager().registerEvents(new InventoryClose(configLib, cacheService), this);
         getServer().getPluginManager().registerEvents(new PlayerInteract(recipe, mobileCrafterGui), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(methods), this);
-        getServer().getPluginManager().registerEvents(new PlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(cacheService), this);
 
     }
 
@@ -109,7 +115,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         for (final Player player : Bukkit.getOnlinePlayers()) {
 
-            if (CacheService.playerCache.get(player.getUniqueId()) != null)
+            if (cacheService.getPlayerCache().get(player.getUniqueId()) != null)
                 continue;
 
             methods.createCache(player.getUniqueId());

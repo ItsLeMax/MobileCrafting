@@ -23,6 +23,8 @@ public final class Methods {
 
     private final ConfigLib configLib;
 
+    private final CacheService cacheService;
+
     /**
      * Creates the inventory cache
      *
@@ -31,7 +33,7 @@ public final class Methods {
      */
     public void createCache(@NotNull final UUID uuid) {
 
-        CacheService.playerCache.put(uuid, new HashMap<>());
+        cacheService.getPlayerCache().put(uuid, new HashMap<>());
 
         // Creating all different custom / player related GUIs
 
@@ -41,9 +43,9 @@ public final class Methods {
 
         // Putting them into the cache of the player
 
-        CacheService.playerCache.get(uuid).put(CustomInventoryType.MENU, menu);
-        CacheService.playerCache.get(uuid).put(CustomInventoryType.WORKBENCH, craftingTable);
-        CacheService.playerCache.get(uuid).put(CustomInventoryType.FURNACE, furnace);
+        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.MENU, menu);
+        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.WORKBENCH, craftingTable);
+        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.FURNACE, furnace);
 
     }
 
