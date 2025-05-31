@@ -2,7 +2,6 @@ package de.fpm_studio.mobilecrafting.inventories;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.ItemLib;
-import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
@@ -31,47 +30,46 @@ public final class MobileCrafterGUI {
      */
     public void loadInventory(@NotNull final Player player) {
 
-        final ItemLib itemBuilder = new ItemLib();
-
         // Loading the player bound mobile crafter main menu...
 
-        final Inventory inventory = (Inventory) cacheService.getPlayerCache()
-                .get(player.getUniqueId()).get(CustomInventoryType.MENU);
+        final Inventory menu = cacheService.getMenuCache().get(player.getUniqueId());
 
-        player.openInventory(inventory);
+        player.openInventory(menu);
 
         // ...with its items
 
-        inventory.setItem(3, itemBuilder
+        menu.setItem(3, new ItemLib()
                 .setItem(Material.CRAFTING_TABLE)
-                .setName("§c" + configLib.text("interface.workbenchTitle"))
+                .setName("§c" + configLib.text("interface.craftingTableTitle"))
                 .create());
 
         // ...depending if they each are unlocked
 
         final boolean hasFurnace = configLib.getConfig("storage")
-                .getBoolean(player.getUniqueId() + ".Unlocked.FURNACE");
+                .getBoolean(player.getUniqueId() + ".furnace.unlocked");
 
-        itemBuilder
+        final ItemLib furnaceBuilder = new ItemLib();
+
+        furnaceBuilder
                 .setItem(hasFurnace ? Material.FURNACE : Material.RED_STAINED_GLASS_PANE)
                 .setName("§5" + configLib.text("interface.furnaceTitle"));
 
         if (!hasFurnace) {
-            itemBuilder.setLore("§7" + configLib.text("interface.unlockSlot"));
+            furnaceBuilder.setLore("§7" + configLib.text("interface.unlockSlot"));
         }
 
-        inventory.setItem(5, itemBuilder.create());
+        menu.setItem(5, furnaceBuilder.create());
 
         // Creating different spacer elements inbetween
 
         for (int slot = 0; slot < 9; slot++) {
 
-            if (inventory.getItem(slot) != null)
+            if (menu.getItem(slot) != null)
                 continue;
 
             if (slot == 0 || slot == 8) {
 
-                inventory.setItem(slot, itemBuilder
+                menu.setItem(slot, furnaceBuilder
                         .setItem(Material.BLACK_STAINED_GLASS_PANE)
                         .setName("§7")
                         .create());
@@ -80,7 +78,7 @@ public final class MobileCrafterGUI {
 
             }
 
-            inventory.setItem(slot, itemBuilder
+            menu.setItem(slot, furnaceBuilder
                     .setItem(Material.GRAY_STAINED_GLASS_PANE)
                     .setName("§7")
                     .create());

@@ -19,7 +19,12 @@ public final class PlayerQuit implements Listener {
 
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
-        cacheService.getPlayerCache().get(event.getPlayer().getUniqueId()).clear();
+
+        cacheService.getMenuCache().remove(event.getPlayer().getUniqueId());
+
+        cacheService.getCraftingTableCache().remove(event.getPlayer().getUniqueId());
+        cacheService.getFurnaceCache().remove(event.getPlayer().getUniqueId());
+
     }
 
 }

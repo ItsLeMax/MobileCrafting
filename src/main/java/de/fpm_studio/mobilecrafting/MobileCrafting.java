@@ -97,7 +97,7 @@ public final class MobileCrafting extends JavaPlugin {
     private void registerEvents() {
 
         getServer().getPluginManager().registerEvents(new BlockPlace(recipe), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(configLib, cacheService), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(configLib, cacheService, methods), this);
         getServer().getPluginManager().registerEvents(new InventoryClose(configLib, cacheService), this);
         getServer().getPluginManager().registerEvents(new PlayerInteract(recipe, mobileCrafterGui), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(methods), this);
@@ -115,7 +115,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         for (final Player player : Bukkit.getOnlinePlayers()) {
 
-            if (cacheService.getPlayerCache().get(player.getUniqueId()) != null)
+            if (cacheService.getMenuCache().get(player.getUniqueId()) != null)
                 continue;
 
             methods.createCache(player.getUniqueId());

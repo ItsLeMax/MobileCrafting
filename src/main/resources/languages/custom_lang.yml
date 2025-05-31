@@ -20,7 +20,7 @@ commands:
 interface:
   mobileCraftingName: "" # Mobile Crafting
   mobileCraftingLore: "" # Contains Crafting Table and Furnace
-  workbenchTitle: "" # Mobile Crafting Table
+  craftingTableTitle: "" # Mobile Crafting Table
   furnaceTitle: "" # Mobile Furnace
   unlockSlot: "" # Put said item on here to unlock
   progressName: "" # Result item will be displayed here

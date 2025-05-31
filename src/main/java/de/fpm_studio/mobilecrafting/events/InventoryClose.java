@@ -1,7 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
-import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
@@ -27,37 +26,31 @@ public final class InventoryClose implements Listener {
     @EventHandler
     public void inventoryClose(InventoryCloseEvent event) {
 
-        final Inventory inventory = event.getInventory();
+        final Inventory inventory = event.getView().getTopInventory();
         final UUID uuid = event.getPlayer().getUniqueId();
 
-        // Storing the items of the previously opened gui
+        // Event only meant for custom guis
 
-        for (final CustomInventoryType craftingTable : new CustomInventoryType[]{
-                CustomInventoryType.WORKBENCH,
-                CustomInventoryType.FURNACE
-        }) {
+        if (inventory.equals(cacheService.getMenuCache().get(uuid)))
+            return;
 
-            if (!inventory.equals(cacheService.getPlayerCache().get(uuid).get(craftingTable)))
+        // Storing each item of every slot of the previously opened gui
+
+        for (int slot = 0; slot < inventory.getType().getDefaultSize(); slot++) {
+
+            if (inventory.getItem(slot) == null)
                 continue;
 
-            // Each item of every slot
+            final ItemStack item = inventory.getItem(slot);
+            assert item != null;
 
-            for (int slot = 0; slot < inventory.getType().getDefaultSize(); slot++) {
-
-                if (inventory.getItem(slot) == null)
-                    continue;
-
-                final ItemStack item = inventory.getItem(slot);
-                assert item != null;
-
-                configLib.getConfig("storage").set(uuid + ".Inventory." + inventory.getType() + "." + slot, item);
-
-            }
-
-            configLib.saveConfig("storage");
-            break;
+            configLib.getConfig("storage").set(uuid + ".inventory."
+                    + inventory.getType().toString().toLowerCase() + "." + slot, item
+            );
 
         }
+
+        configLib.saveConfig("storage");
 
     }
 

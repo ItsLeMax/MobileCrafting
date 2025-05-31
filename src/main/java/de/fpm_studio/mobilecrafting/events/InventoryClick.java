@@ -1,8 +1,8 @@
 package de.fpm_studio.mobilecrafting.events;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
-import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
 import de.fpm_studio.mobilecrafting.service.CacheService;
+import de.fpm_studio.mobilecrafting.util.Methods;
 import lombok.AllArgsConstructor;
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -10,7 +10,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
@@ -28,6 +27,8 @@ public final class InventoryClick implements Listener {
     private final ConfigLib configLib;
     private final CacheService cacheService;
 
+    private final Methods methods;
+
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {
 
@@ -40,20 +41,9 @@ public final class InventoryClick implements Listener {
         final Player player = (Player) event.getView().getPlayer();
         final UUID uuid = player.getUniqueId();
 
-        // Fix of a duplication issue
-
-        if (event.getInventory().equals(cacheService.getPlayerCache().get(uuid).get(CustomInventoryType.WORKBENCH)) && event.isShiftClick()) {
-
-            if (!clickedInventory.getType().equals(InventoryType.PLAYER))
-                return;
-
-            event.setCancelled(true);
-
-        }
-
         // Menu interaction handling
 
-        if (!clickedInventory.equals(cacheService.getPlayerCache().get(uuid).get(CustomInventoryType.MENU)))
+        if (!clickedInventory.equals(cacheService.getMenuCache().get(uuid)))
             return;
 
         event.setCancelled(true);
@@ -63,21 +53,30 @@ public final class InventoryClick implements Listener {
 
         // Opening each menu on click interaction
 
-        CustomInventoryType subMenuType = CustomInventoryType.valueOf(clickedInventory.getType().toString());
+        final Inventory openedSubMenu = switch (clickedItem.getType()) {
 
-        if (clickedItem.getType().toString().equals("CRAFTING_TABLE")) {
-            subMenuType = CustomInventoryType.WORKBENCH;
-        }
+            case CRAFTING_TABLE -> cacheService.getCraftingTableCache().get(uuid);
+            case FURNACE -> cacheService.getFurnaceCache().get(uuid);
 
-        final Inventory subMenu = ((Inventory) cacheService.getPlayerCache().get(uuid).get(subMenuType));
-        player.openInventory(subMenu);
+            default -> {
+                methods.createCache(uuid);
+
+                throw new NullPointerException("Cache creation failed for " + player.getName() + " (" + uuid + ") - " +
+                        "Inventory could not be opened - New attempt in progress..."
+                );
+            }
+
+        };
 
         // QoL
 
         final Sound sound = switch (clickedItem.getType()) {
+
             case CRAFTING_TABLE -> Sound.BLOCK_WOOD_PLACE;
             case FURNACE -> Sound.ITEM_FIRECHARGE_USE;
+
             default -> throw new RuntimeException();
+
         };
 
         player.playSound(player.getLocation(), sound, 1, 1);
@@ -86,16 +85,15 @@ public final class InventoryClick implements Listener {
 
         final FileConfiguration storage = configLib.getConfig("storage");
 
-        for (int slot = 0; slot < subMenu.getType().getDefaultSize(); slot++) {
-
-            final String path = uuid + ".Inventory." + subMenuType + "." + slot;
+        for (int slot = 0; slot < openedSubMenu.getType().getDefaultSize(); slot++) {
+            final String path = uuid + ".inventory." + openedSubMenu.getType().toString().toLowerCase() + "." + slot;
 
             if (storage.get(path) == null)
                 continue;
 
-            subMenu.setItem(slot, (ItemStack) storage.get(path));
-
+            openedSubMenu.setItem(slot, (ItemStack) storage.get(path));
         }
+
     }
 
 }

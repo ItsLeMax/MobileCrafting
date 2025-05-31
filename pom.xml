@@ -52,17 +52,10 @@
                             <minimizeJar>true</minimizeJar>
 
                             <relocations>
-
                                 <relocation>
                                     <pattern>de.fpm_studio.ilmlib</pattern>
                                     <shadedPattern>de.fpm_studio.shaded.ilmlib</shadedPattern>
                                 </relocation>
-
-                                <relocation>
-                                    <pattern>com.github.stefvanschie.inventoryframework</pattern>
-                                    <shadedPattern>de.fpm_studio.shaded.gui</shadedPattern>
-                                </relocation>
-
                             </relocations>
 
                         </configuration>
@@ -128,11 +121,6 @@
             <groupId>com.github.itslemax</groupId>
             <artifactId>ilmlib</artifactId>
             <version>1.2.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.stefvanschie.inventoryframework</groupId>
-            <artifactId>IF</artifactId>
-            <version>0.11.0</version>
         </dependency>
 
     </dependencies>

@@ -11,7 +11,7 @@ commands:
 interface:
   mobileCraftingName: "Mobile Herstellung"
   mobileCraftingLore: "Enthält Werkbank und Ofen"
-  workbenchTitle: "Mobile Werkbank"
+  craftingTableTitle: "Mobile Werkbank"
   furnaceTitle: "Mobiler Ofen"
   unlockSlot: "Zum Freischalten besagtes Item hierauf legen"
   progressName: "Resultierendes Item wird hier angezeigt"

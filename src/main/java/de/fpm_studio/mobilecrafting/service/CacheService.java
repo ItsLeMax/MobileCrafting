@@ -1,7 +1,7 @@
 package de.fpm_studio.mobilecrafting.service;
 
-import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
 import lombok.Getter;
+import org.bukkit.inventory.Inventory;
 
 import java.util.HashMap;
 import java.util.UUID;
@@ -15,6 +15,11 @@ import java.util.UUID;
 @Getter
 public final class CacheService {
 
-    private final HashMap<UUID, HashMap<CustomInventoryType, Object>> playerCache = new HashMap<>();
+    // The menu cache also serves as null check (if the player is cached)
+
+    private final HashMap<UUID, Inventory> menuCache = new HashMap<>();
+
+    private final HashMap<UUID, Inventory> craftingTableCache = new HashMap<>();
+    private final HashMap<UUID, Inventory> furnaceCache = new HashMap<>();
 
 }

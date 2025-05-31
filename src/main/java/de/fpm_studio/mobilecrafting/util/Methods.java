@@ -1,15 +1,13 @@
 package de.fpm_studio.mobilecrafting.util;
 
-import com.github.stefvanschie.inventoryframework.gui.type.ChestGui;
-import com.github.stefvanschie.inventoryframework.gui.type.CraftingTableGui;
-import com.github.stefvanschie.inventoryframework.gui.type.FurnaceGui;
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
-import de.fpm_studio.mobilecrafting.data.CustomInventoryType;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
+import org.bukkit.Bukkit;
+import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.Inventory;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
 import java.util.UUID;
 
 /**
@@ -33,19 +31,25 @@ public final class Methods {
      */
     public void createCache(@NotNull final UUID uuid) {
 
-        cacheService.getPlayerCache().put(uuid, new HashMap<>());
-
         // Creating all different custom / player related GUIs
 
-        final ChestGui menu = new ChestGui(1, "§c" + configLib.text("interface.mobileCraftingName"));
-        final CraftingTableGui craftingTable = new CraftingTableGui("§c" + configLib.text("interface.workbenchTitle"));
-        final FurnaceGui furnace = new FurnaceGui("§5" + configLib.text("interface.furnaceTitle"));
+        final Inventory menu = Bukkit.createInventory(null, 9,
+                "§c" + configLib.text("interface.mobileCraftingName")
+        );
+
+        final Inventory craftingTable = Bukkit.createInventory(null, InventoryType.CRAFTING,
+                "§c" + configLib.text("interface.craftingTableTitle")
+        );
+        final Inventory furnace = Bukkit.createInventory(null, InventoryType.FURNACE,
+                "§5" + configLib.text("interface.furnaceTitle")
+        );
 
         // Putting them into the cache of the player
 
-        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.MENU, menu);
-        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.WORKBENCH, craftingTable);
-        cacheService.getPlayerCache().get(uuid).put(CustomInventoryType.FURNACE, furnace);
+        cacheService.getMenuCache().put(uuid, menu);
+
+        cacheService.getCraftingTableCache().put(uuid, craftingTable);
+        cacheService.getFurnaceCache().put(uuid, furnace);
 
     }
 
