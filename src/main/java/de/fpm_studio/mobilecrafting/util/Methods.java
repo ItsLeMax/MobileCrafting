@@ -28,6 +28,7 @@ public final class Methods {
      *
      * @param uuid UUID of the player to cache
      * @author ItsLeMax
+     * @since 1.0.0
      */
     public void createCache(@NotNull final UUID uuid) {
 

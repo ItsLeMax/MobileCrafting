@@ -61,7 +61,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         // Initializing inventories
 
-        mobileCrafterGui = new MobileCrafterGUI(configLib, cacheService);
+        mobileCrafterGui = new MobileCrafterGUI(configLib, cacheService, methods);
 
         recipe = new Recipe(this, configLib);
         recipe.register();
@@ -97,7 +97,7 @@ public final class MobileCrafting extends JavaPlugin {
     private void registerEvents() {
 
         getServer().getPluginManager().registerEvents(new BlockPlace(recipe), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(configLib, cacheService, methods), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(cacheService, mobileCrafterGui), this);
         getServer().getPluginManager().registerEvents(new InventoryClose(configLib, cacheService), this);
         getServer().getPluginManager().registerEvents(new PlayerInteract(recipe, mobileCrafterGui), this);
         getServer().getPluginManager().registerEvents(new PlayerJoin(methods), this);
