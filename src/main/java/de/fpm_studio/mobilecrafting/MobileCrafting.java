@@ -66,7 +66,7 @@ public final class MobileCrafting extends JavaPlugin {
         mobileCrafterGui = new MobileCrafterGUI(this);
 
         recipe = new Recipe(this);
-        recipe.register();
+        getRecipe().register();
 
         // Special methods
 
@@ -119,10 +119,10 @@ public final class MobileCrafting extends JavaPlugin {
 
         for (final Player player : Bukkit.getOnlinePlayers()) {
 
-            if (cacheService.getMenuCache().get(player.getUniqueId()) != null)
+            if (getCacheService().getMenuCache().get(player.getUniqueId()) != null)
                 continue;
 
-            methods.createCache(player.getUniqueId());
+            getMethods().createCache(player.getUniqueId());
 
         }
 
