@@ -75,8 +75,7 @@ public final class MobileCrafting extends JavaPlugin {
 
         reloadHandling();
 
-        Bukkit.getConsoleSender().sendMessage("§c" + getConfigLib().text("init")
-                .replace("%p%", "[MobileCrafting]"));
+        Bukkit.getConsoleSender().sendMessage("§c" + getConfigLib().text("init").replace("%p%", "[MobileCrafting]"));
 
     }
 
