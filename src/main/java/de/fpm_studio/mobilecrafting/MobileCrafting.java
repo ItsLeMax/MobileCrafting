@@ -49,8 +49,8 @@ public final class MobileCrafting extends JavaPlugin {
                 .setPrefix("§cMobileCrafting §7»", true)
                 .createTemplateDefaults()
                 .setSuffix(new HashMap<>() {{
-                    put(Template.SUCCESS, configLib.text("commands.success"));
-                    put(Template.ERROR, configLib.text("commands.error"));
+                    put(Template.SUCCESS, getConfigLib().text("commands.success"));
+                    put(Template.ERROR, getConfigLib().text("commands.error"));
                 }});
 
         // Initializing services
@@ -75,7 +75,9 @@ public final class MobileCrafting extends JavaPlugin {
 
         reloadHandling();
 
-        Bukkit.getConsoleSender().sendMessage("§c" + configLib.text("init").replace("%p%", "[MobileCrafting]"));
+        Bukkit.getConsoleSender().sendMessage("§c" + getConfigLib().text("init")
+                .replace("%p%", "[MobileCrafting]")
+        );
 
     }
 
