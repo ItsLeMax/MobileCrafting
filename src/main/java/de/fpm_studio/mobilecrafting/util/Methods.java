@@ -1,6 +1,7 @@
 package de.fpm_studio.mobilecrafting.util;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.Bukkit;
@@ -19,9 +20,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public final class Methods {
 
-    private final ConfigLib configLib;
+    private final MobileCrafting instance;
 
-    private final CacheService cacheService;
+    private final ConfigLib configLib = instance.getConfigLib();
+    private final CacheService cacheService = instance.getCacheService();
 
     /**
      * Creates the inventory cache

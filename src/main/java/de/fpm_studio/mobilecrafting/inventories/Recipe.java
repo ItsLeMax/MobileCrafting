@@ -22,7 +22,8 @@ import org.bukkit.inventory.ShapedRecipe;
 public final class Recipe {
 
     private final MobileCrafting instance;
-    private final ConfigLib configLib;
+
+    private final ConfigLib configLib = instance.getConfigLib();
 
     @Getter
     public ItemStack crafter;

@@ -4,6 +4,7 @@ import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.MessageLib;
 import de.fpm_studio.ilmlib.util.HoverText;
 import de.fpm_studio.ilmlib.util.Template;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import lombok.AllArgsConstructor;
 import org.bukkit.command.Command;
@@ -21,10 +22,12 @@ import org.jetbrains.annotations.NotNull;
 @AllArgsConstructor
 public final class GiveMobileCrafter implements CommandExecutor {
 
-    private final ConfigLib configLib;
-    private final MessageLib messageLib;
+    private final MobileCrafting instance;
 
-    private final Recipe recipe;
+    private final ConfigLib configLib = instance.getConfigLib();
+    private final MessageLib messageLib = instance.getMessageLib();
+
+    private final Recipe recipe = instance.getRecipe();
 
     @Override
     public boolean onCommand(

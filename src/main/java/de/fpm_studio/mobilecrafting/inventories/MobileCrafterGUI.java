@@ -2,6 +2,7 @@ package de.fpm_studio.mobilecrafting.inventories;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.ItemLib;
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import de.fpm_studio.mobilecrafting.util.Methods;
 import lombok.AllArgsConstructor;
@@ -25,10 +26,11 @@ import java.util.UUID;
 @AllArgsConstructor
 public final class MobileCrafterGUI {
 
-    private final ConfigLib configLib;
-    private final CacheService cacheService;
+    private final MobileCrafting instance;
 
-    private final Methods methods;
+    private final ConfigLib configLib = instance.getConfigLib();
+    private final CacheService cacheService = instance.getCacheService();
+    private final Methods methods = instance.getMethods();
 
     /**
      * Loads the GUI of the menu

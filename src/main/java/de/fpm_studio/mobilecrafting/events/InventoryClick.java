@@ -1,5 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
@@ -21,9 +22,10 @@ import java.util.UUID;
 @AllArgsConstructor
 public final class InventoryClick implements Listener {
 
-    private final CacheService cacheService;
+    private final MobileCrafting instance;
 
-    private final MobileCrafterGUI mobileCrafterGUI;
+    private final CacheService cacheService = instance.getCacheService();
+    private final MobileCrafterGUI mobileCrafterGUI = instance.getMobileCrafterGui();
 
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {

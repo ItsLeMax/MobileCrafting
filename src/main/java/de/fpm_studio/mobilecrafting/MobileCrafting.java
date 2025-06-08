@@ -9,6 +9,7 @@ import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
 import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import de.fpm_studio.mobilecrafting.util.Methods;
+import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -21,6 +22,7 @@ import java.util.HashMap;
  * @author ItsLeMax
  * @since 1.0.0
  */
+@Getter
 public final class MobileCrafting extends JavaPlugin {
 
     private ConfigLib configLib;
@@ -57,13 +59,13 @@ public final class MobileCrafting extends JavaPlugin {
 
         // Initializing classes
 
-        methods = new Methods(configLib, cacheService);
+        methods = new Methods(this);
 
         // Initializing inventories
 
-        mobileCrafterGui = new MobileCrafterGUI(configLib, cacheService, methods);
+        mobileCrafterGui = new MobileCrafterGUI(this);
 
-        recipe = new Recipe(this, configLib);
+        recipe = new Recipe(this);
         recipe.register();
 
         // Special methods
@@ -85,7 +87,7 @@ public final class MobileCrafting extends JavaPlugin {
      */
     @SuppressWarnings("ConstantConditions")
     private void registerCommands() {
-        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter(configLib, messageLib, recipe));
+        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter(this));
     }
 
     /**
@@ -96,12 +98,12 @@ public final class MobileCrafting extends JavaPlugin {
      */
     private void registerEvents() {
 
-        getServer().getPluginManager().registerEvents(new BlockPlace(recipe), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(cacheService, mobileCrafterGui), this);
-        getServer().getPluginManager().registerEvents(new InventoryClose(configLib, cacheService), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteract(recipe, mobileCrafterGui), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(methods), this);
-        getServer().getPluginManager().registerEvents(new PlayerQuit(cacheService), this);
+        getServer().getPluginManager().registerEvents(new BlockPlace(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryClick(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryClose(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteract(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
 
     }
 

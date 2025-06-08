@@ -1,5 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.util.Methods;
 import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
@@ -15,7 +16,9 @@ import org.bukkit.event.player.PlayerJoinEvent;
 @AllArgsConstructor
 public final class PlayerJoin implements Listener {
 
-    private final Methods methods;
+    private final MobileCrafting instance;
+
+    private final Methods methods = instance.getMethods();
 
     @EventHandler
     public void playerJoin(PlayerJoinEvent event) {

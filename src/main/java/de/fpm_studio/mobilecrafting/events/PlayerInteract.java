@@ -1,5 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
 import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,10 @@ import org.bukkit.inventory.EquipmentSlot;
 @AllArgsConstructor
 public final class PlayerInteract implements Listener {
 
-    private final Recipe recipe;
-    private final MobileCrafterGUI mobileCrafterGui;
+    private final MobileCrafting instance;
+
+    private final Recipe recipe = instance.getRecipe();
+    private final MobileCrafterGUI mobileCrafterGui = instance.getMobileCrafterGui();
 
     @EventHandler
     public void playerInteract(PlayerInteractEvent event) {

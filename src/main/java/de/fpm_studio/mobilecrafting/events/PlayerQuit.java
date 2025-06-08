@@ -1,5 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
+import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
@@ -15,7 +16,9 @@ import org.bukkit.event.player.PlayerQuitEvent;
 @AllArgsConstructor
 public final class PlayerQuit implements Listener {
 
-    private final CacheService cacheService;
+    private final MobileCrafting instance;
+
+    private final CacheService cacheService = instance.getCacheService();
 
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
