@@ -1,7 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
-import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -18,12 +17,10 @@ public final class BlockPlace implements Listener {
 
     private final MobileCrafting instance;
 
-    private final Recipe recipe = instance.getRecipe();
-
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
 
-        if (!event.getItemInHand().equals(recipe.crafter))
+        if (!event.getItemInHand().equals(instance.getRecipe().crafter))
             return;
 
         event.setCancelled(true);

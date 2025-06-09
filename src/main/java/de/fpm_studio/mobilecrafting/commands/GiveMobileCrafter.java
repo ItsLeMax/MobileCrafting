@@ -24,17 +24,17 @@ public final class GiveMobileCrafter implements CommandExecutor {
 
     private final MobileCrafting instance;
 
-    private final ConfigLib configLib = instance.getConfigLib();
-    private final MessageLib messageLib = instance.getMessageLib();
-
-    private final Recipe recipe = instance.getRecipe();
-
     @Override
     public boolean onCommand(
             @NotNull final CommandSender sender,
             @NotNull final Command command,
             @NotNull final String label,
             final String[] args) {
+
+        final ConfigLib configLib = instance.getConfigLib();
+        final MessageLib messageLib = instance.getMessageLib();
+
+        final Recipe recipe = instance.getRecipe();
 
         if (!sender.hasPermission("mobilecrafting.give")) {
             messageLib.sendInfo(sender, Template.ERROR, configLib.text("commands.opOnly"));

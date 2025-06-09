@@ -28,10 +28,6 @@ public final class MobileCrafterGUI {
 
     private final MobileCrafting instance;
 
-    private final ConfigLib configLib = instance.getConfigLib();
-    private final CacheService cacheService = instance.getCacheService();
-    private final Methods methods = instance.getMethods();
-
     /**
      * Loads the GUI of the menu
      *
@@ -40,6 +36,9 @@ public final class MobileCrafterGUI {
      * @since 1.0.0
      */
     public void loadInventory(@NotNull final Player player) {
+
+        final ConfigLib configLib = instance.getConfigLib();
+        final CacheService cacheService = instance.getCacheService();
 
         // Loading the player bound mobile crafter main menu...
 
@@ -105,6 +104,10 @@ public final class MobileCrafterGUI {
      * @since Code: 1.0.0 <br> Method: 1.1.3
      */
     public void onMenuInteraction(@NotNull final InventoryClickEvent event) {
+
+        final ConfigLib configLib = instance.getConfigLib();
+        final CacheService cacheService = instance.getCacheService();
+        final Methods methods = instance.getMethods();
 
         final ItemStack clickedItem = event.getCurrentItem();
         assert clickedItem != null;

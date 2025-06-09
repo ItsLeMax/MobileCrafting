@@ -23,8 +23,6 @@ public final class Recipe {
 
     private final MobileCrafting instance;
 
-    private final ConfigLib configLib = instance.getConfigLib();
-
     @Getter
     public ItemStack crafter;
 
@@ -35,6 +33,8 @@ public final class Recipe {
      * @since 1.0.0
      */
     public void register() {
+
+        final ConfigLib configLib = instance.getConfigLib();
 
         crafter = new ItemLib()
                 .setItem(Material.CRAFTING_TABLE)

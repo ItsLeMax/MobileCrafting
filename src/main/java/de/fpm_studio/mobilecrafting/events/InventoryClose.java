@@ -23,11 +23,11 @@ public final class InventoryClose implements Listener {
 
     private final MobileCrafting instance;
 
-    private final ConfigLib configLib = instance.getConfigLib();
-    private final CacheService cacheService = instance.getCacheService();
-
     @EventHandler
     public void inventoryClose(InventoryCloseEvent event) {
+
+        final ConfigLib configLib = instance.getConfigLib();
+        final CacheService cacheService = instance.getCacheService();
 
         final Inventory inventory = event.getView().getTopInventory();
         final UUID uuid = event.getPlayer().getUniqueId();

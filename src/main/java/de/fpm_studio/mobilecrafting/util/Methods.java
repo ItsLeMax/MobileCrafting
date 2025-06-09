@@ -22,9 +22,6 @@ public final class Methods {
 
     private final MobileCrafting instance;
 
-    private final ConfigLib configLib = instance.getConfigLib();
-    private final CacheService cacheService = instance.getCacheService();
-
     /**
      * Creates the inventory cache
      *
@@ -33,6 +30,9 @@ public final class Methods {
      * @since 1.0.0
      */
     public void createCache(@NotNull final UUID uuid) {
+
+        final ConfigLib configLib = instance.getConfigLib();
+        final CacheService cacheService = instance.getCacheService();
 
         // Creating all different custom / player related GUIs
 

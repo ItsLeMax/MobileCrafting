@@ -18,10 +18,10 @@ public final class PlayerQuit implements Listener {
 
     private final MobileCrafting instance;
 
-    private final CacheService cacheService = instance.getCacheService();
-
     @EventHandler
     public void playerQuit(PlayerQuitEvent event) {
+
+        final CacheService cacheService = instance.getCacheService();
 
         cacheService.getMenuCache().remove(event.getPlayer().getUniqueId());
 

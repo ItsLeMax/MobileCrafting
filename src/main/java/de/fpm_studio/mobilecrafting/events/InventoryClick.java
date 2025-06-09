@@ -24,11 +24,11 @@ public final class InventoryClick implements Listener {
 
     private final MobileCrafting instance;
 
-    private final CacheService cacheService = instance.getCacheService();
-    private final MobileCrafterGUI mobileCrafterGUI = instance.getMobileCrafterGui();
-
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {
+
+        final CacheService cacheService = instance.getCacheService();
+        final MobileCrafterGUI mobileCrafterGUI = instance.getMobileCrafterGui();
 
         final ItemStack clickedItem = event.getCurrentItem();
         final Inventory clickedInventory = event.getClickedInventory();

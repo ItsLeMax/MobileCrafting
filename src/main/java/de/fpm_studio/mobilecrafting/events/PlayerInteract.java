@@ -22,11 +22,11 @@ public final class PlayerInteract implements Listener {
 
     private final MobileCrafting instance;
 
-    private final Recipe recipe = instance.getRecipe();
-    private final MobileCrafterGUI mobileCrafterGui = instance.getMobileCrafterGui();
-
     @EventHandler
     public void playerInteract(PlayerInteractEvent event) {
+
+        final Recipe recipe = instance.getRecipe();
+        final MobileCrafterGUI mobileCrafterGui = instance.getMobileCrafterGui();
 
         // Open the crafter on interaction
 
