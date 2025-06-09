@@ -20,7 +20,7 @@ public final class BlockPlace implements Listener {
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
 
-        if (!event.getItemInHand().equals(instance.getRecipe().crafter))
+        if (!event.getItemInHand().equals(instance.getRecipe().getCrafter()))
             return;
 
         event.setCancelled(true);

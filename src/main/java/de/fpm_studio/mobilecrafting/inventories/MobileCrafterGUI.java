@@ -4,7 +4,6 @@ import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.ItemLib;
 import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.service.CacheService;
-import de.fpm_studio.mobilecrafting.util.Methods;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -105,10 +104,6 @@ public final class MobileCrafterGUI {
      */
     public void onMenuInteraction(@NotNull final InventoryClickEvent event) {
 
-        final ConfigLib configLib = instance.getConfigLib();
-        final CacheService cacheService = instance.getCacheService();
-        final Methods methods = instance.getMethods();
-
         final ItemStack clickedItem = event.getCurrentItem();
         assert clickedItem != null;
 
@@ -121,6 +116,8 @@ public final class MobileCrafterGUI {
         if (clickedItem.getType().toString().contains("STAINED_GLASS_PANE"))
             return;
 
+        final CacheService cacheService = instance.getCacheService();
+
         // Opening each menu on click interaction
 
         final Inventory openedSubMenu = switch (clickedItem.getType()) {
@@ -129,7 +126,7 @@ public final class MobileCrafterGUI {
             case FURNACE -> cacheService.getFurnaceCache().get(uuid);
 
             default -> {
-                methods.createCache(uuid);
+                instance.getMethods().createCache(uuid);
 
                 throw new NullPointerException("Cache creation failed for " + player.getName() + " (" + uuid + ") - " +
                         "Inventory could not be opened - New attempt in progress..."
@@ -153,7 +150,7 @@ public final class MobileCrafterGUI {
 
         // Load the stored items of the custom gui
 
-        final FileConfiguration storage = configLib.getConfig("storage");
+        final FileConfiguration storage = instance.getConfigLib().getConfig("storage");
 
         for (int slot = 0; slot < openedSubMenu.getType().getDefaultSize(); slot++) {
             final String path = uuid + ".inventory." + openedSubMenu.getType().toString().toLowerCase() + "." + slot;

@@ -1,8 +1,6 @@
 package de.fpm_studio.mobilecrafting.events;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
-import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
-import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -27,9 +25,6 @@ public final class InventoryClick implements Listener {
     @EventHandler
     public void inventoryClick(InventoryClickEvent event) {
 
-        final CacheService cacheService = instance.getCacheService();
-        final MobileCrafterGUI mobileCrafterGUI = instance.getMobileCrafterGui();
-
         final ItemStack clickedItem = event.getCurrentItem();
         final Inventory clickedInventory = event.getClickedInventory();
 
@@ -41,12 +36,12 @@ public final class InventoryClick implements Listener {
 
         // Menu interaction handling
 
-        if (!clickedInventory.equals(cacheService.getMenuCache().get(uuid)))
+        if (!clickedInventory.equals(instance.getCacheService().getMenuCache().get(uuid)))
             return;
 
         event.setCancelled(true);
 
-        mobileCrafterGUI.onMenuInteraction(event);
+        instance.getMobileCrafterGui().onMenuInteraction(event);
 
     }
 

@@ -2,7 +2,6 @@ package de.fpm_studio.mobilecrafting.events;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.mobilecrafting.MobileCrafting;
-import de.fpm_studio.mobilecrafting.service.CacheService;
 import lombok.AllArgsConstructor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,16 +25,15 @@ public final class InventoryClose implements Listener {
     @EventHandler
     public void inventoryClose(InventoryCloseEvent event) {
 
-        final ConfigLib configLib = instance.getConfigLib();
-        final CacheService cacheService = instance.getCacheService();
-
         final Inventory inventory = event.getView().getTopInventory();
         final UUID uuid = event.getPlayer().getUniqueId();
 
         // Event only meant for custom guis
 
-        if (inventory.equals(cacheService.getMenuCache().get(uuid)))
+        if (inventory.equals(instance.getCacheService().getMenuCache().get(uuid)))
             return;
+
+        final ConfigLib configLib = instance.getConfigLib();
 
         // Storing each item of every slot of the previously opened gui
 

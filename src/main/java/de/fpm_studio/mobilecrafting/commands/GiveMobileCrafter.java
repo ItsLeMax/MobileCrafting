@@ -5,7 +5,6 @@ import de.fpm_studio.ilmlib.libraries.MessageLib;
 import de.fpm_studio.ilmlib.util.HoverText;
 import de.fpm_studio.ilmlib.util.Template;
 import de.fpm_studio.mobilecrafting.MobileCrafting;
-import de.fpm_studio.mobilecrafting.inventories.Recipe;
 import lombok.AllArgsConstructor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -34,8 +33,6 @@ public final class GiveMobileCrafter implements CommandExecutor {
         final ConfigLib configLib = instance.getConfigLib();
         final MessageLib messageLib = instance.getMessageLib();
 
-        final Recipe recipe = instance.getRecipe();
-
         if (!sender.hasPermission("mobilecrafting.give")) {
             messageLib.sendInfo(sender, Template.ERROR, configLib.text("commands.opOnly"));
             return true;
@@ -57,7 +54,7 @@ public final class GiveMobileCrafter implements CommandExecutor {
 
         // Cheat the mobile crafter item with a chat info
 
-        player.getInventory().addItem(recipe.crafter);
+        player.getInventory().addItem(instance.getRecipe().getCrafter());
         messageLib.sendInfo(player, Template.SUCCESS, configLib.text("commands.granted"));
 
         return true;
