@@ -1,4 +1,4 @@
-package de.fpm_studio.mobilecrafting.inventories;
+package de.fpm_studio.mobilecrafting.registry;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.ItemLib;
@@ -19,7 +19,7 @@ import org.bukkit.inventory.ShapedRecipe;
  * @since 1.0.0
  */
 @RequiredArgsConstructor
-public final class Recipe {
+public final class ItemRegistry {
 
     private final MobileCrafting instance;
 

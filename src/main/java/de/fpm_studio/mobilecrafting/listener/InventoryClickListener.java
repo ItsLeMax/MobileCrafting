@@ -1,4 +1,4 @@
-package de.fpm_studio.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.listener;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
 import lombok.AllArgsConstructor;
@@ -18,7 +18,7 @@ import java.util.UUID;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class InventoryClick implements Listener {
+public final class InventoryClickListener implements Listener {
 
     private final MobileCrafting instance;
 

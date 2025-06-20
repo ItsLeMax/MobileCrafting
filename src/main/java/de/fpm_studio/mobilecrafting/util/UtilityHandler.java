@@ -18,7 +18,7 @@ import java.util.UUID;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class Methods {
+public final class UtilityHandler {
 
     private final MobileCrafting instance;
 

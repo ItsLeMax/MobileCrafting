@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class GiveMobileCrafter implements CommandExecutor {
+public final class GiveMobileCrafterCommand implements CommandExecutor {
 
     private final MobileCrafting instance;
 
@@ -54,7 +54,7 @@ public final class GiveMobileCrafter implements CommandExecutor {
 
         // Cheat the mobile crafter item with a chat info
 
-        player.getInventory().addItem(instance.getRecipe().getCrafter());
+        player.getInventory().addItem(instance.getItemRegistry().getCrafter());
         messageLib.sendInfo(player, Template.SUCCESS, configLib.text("commands.granted"));
 
         return true;

@@ -1,8 +1,8 @@
-package de.fpm_studio.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.listener;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
-import de.fpm_studio.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.registry.ItemRegistry;
 import lombok.AllArgsConstructor;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -18,14 +18,14 @@ import org.bukkit.inventory.EquipmentSlot;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class PlayerInteract implements Listener {
+public final class PlayerInteractListener implements Listener {
 
     private final MobileCrafting instance;
 
     @EventHandler
     public void playerInteract(PlayerInteractEvent event) {
 
-        final Recipe recipe = instance.getRecipe();
+        final ItemRegistry itemRegistry = instance.getItemRegistry();
         final MobileCrafterGUI mobileCrafterGui = instance.getMobileCrafterGui();
 
         // Open the crafter on interaction
@@ -33,7 +33,7 @@ public final class PlayerInteract implements Listener {
         if (event.getHand() != EquipmentSlot.HAND)
             return;
 
-        if (event.getItem() != null && !event.getItem().equals(recipe.getCrafter()))
+        if (event.getItem() != null && !event.getItem().equals(itemRegistry.getCrafter()))
             return;
 
         final Player player = event.getPlayer();

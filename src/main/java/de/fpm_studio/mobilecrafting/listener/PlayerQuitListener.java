@@ -1,4 +1,4 @@
-package de.fpm_studio.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.listener;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
 import de.fpm_studio.mobilecrafting.service.CacheService;
@@ -14,7 +14,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class PlayerQuit implements Listener {
+public final class PlayerQuitListener implements Listener {
 
     private final MobileCrafting instance;
 

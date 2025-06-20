@@ -1,4 +1,4 @@
-package de.fpm_studio.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.listener;
 
 import de.fpm_studio.mobilecrafting.MobileCrafting;
 import lombok.AllArgsConstructor;
@@ -13,14 +13,14 @@ import org.bukkit.event.block.BlockPlaceEvent;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class BlockPlace implements Listener {
+public final class BlockPlaceListener implements Listener {
 
     private final MobileCrafting instance;
 
     @EventHandler
     public void blockPlace(BlockPlaceEvent event) {
 
-        if (!event.getItemInHand().equals(instance.getRecipe().getCrafter()))
+        if (!event.getItemInHand().equals(instance.getItemRegistry().getCrafter()))
             return;
 
         event.setCancelled(true);

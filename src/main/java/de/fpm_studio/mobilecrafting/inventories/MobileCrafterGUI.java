@@ -126,7 +126,7 @@ public final class MobileCrafterGUI {
             case FURNACE -> cacheService.getFurnaceCache().get(uuid);
 
             default -> {
-                instance.getMethods().createCache(uuid);
+                instance.getUtilityHandler().createCache(uuid);
 
                 throw new NullPointerException("Cache creation failed for " + player.getName() + " (" + uuid + ") - " +
                         "Inventory could not be opened - New attempt in progress..."

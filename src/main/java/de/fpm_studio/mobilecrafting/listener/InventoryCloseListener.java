@@ -1,4 +1,4 @@
-package de.fpm_studio.mobilecrafting.events;
+package de.fpm_studio.mobilecrafting.listener;
 
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.mobilecrafting.MobileCrafting;
@@ -18,7 +18,7 @@ import java.util.UUID;
  * @since 1.0.0
  */
 @AllArgsConstructor
-public final class InventoryClose implements Listener {
+public final class InventoryCloseListener implements Listener {
 
     private final MobileCrafting instance;
 

@@ -3,12 +3,12 @@ package de.fpm_studio.mobilecrafting;
 import de.fpm_studio.ilmlib.libraries.ConfigLib;
 import de.fpm_studio.ilmlib.libraries.MessageLib;
 import de.fpm_studio.ilmlib.util.Template;
-import de.fpm_studio.mobilecrafting.commands.GiveMobileCrafter;
-import de.fpm_studio.mobilecrafting.events.*;
+import de.fpm_studio.mobilecrafting.commands.GiveMobileCrafterCommand;
+import de.fpm_studio.mobilecrafting.listener.*;
 import de.fpm_studio.mobilecrafting.inventories.MobileCrafterGUI;
-import de.fpm_studio.mobilecrafting.inventories.Recipe;
+import de.fpm_studio.mobilecrafting.registry.ItemRegistry;
 import de.fpm_studio.mobilecrafting.service.CacheService;
-import de.fpm_studio.mobilecrafting.util.Methods;
+import de.fpm_studio.mobilecrafting.util.UtilityHandler;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -30,10 +30,10 @@ public final class MobileCrafting extends JavaPlugin {
 
     private CacheService cacheService;
 
-    private Methods methods;
+    private UtilityHandler utilityHandler;
 
     private MobileCrafterGUI mobileCrafterGui;
-    private Recipe recipe;
+    private ItemRegistry itemRegistry;
 
     @Override
     public void onEnable() {
@@ -59,14 +59,14 @@ public final class MobileCrafting extends JavaPlugin {
 
         // Initializing classes
 
-        methods = new Methods(this);
+        utilityHandler = new UtilityHandler(this);
 
         // Initializing inventories
 
         mobileCrafterGui = new MobileCrafterGUI(this);
 
-        recipe = new Recipe(this);
-        getRecipe().register();
+        itemRegistry = new ItemRegistry(this);
+        getItemRegistry().register();
 
         // Special methods
 
@@ -87,7 +87,7 @@ public final class MobileCrafting extends JavaPlugin {
      */
     @SuppressWarnings("ConstantConditions")
     private void registerCommands() {
-        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafter(this));
+        getCommand("givemobilecrafter").setExecutor(new GiveMobileCrafterCommand(this));
     }
 
     /**
@@ -98,12 +98,12 @@ public final class MobileCrafting extends JavaPlugin {
      */
     private void registerEvents() {
 
-        getServer().getPluginManager().registerEvents(new BlockPlace(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryClick(this), this);
-        getServer().getPluginManager().registerEvents(new InventoryClose(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerInteract(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerJoin(this), this);
-        getServer().getPluginManager().registerEvents(new PlayerQuit(this), this);
+        getServer().getPluginManager().registerEvents(new BlockPlaceListener(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryClickListener(this), this);
+        getServer().getPluginManager().registerEvents(new InventoryCloseListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerInteractListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
+        getServer().getPluginManager().registerEvents(new PlayerQuitListener(this), this);
 
     }
 
@@ -120,7 +120,7 @@ public final class MobileCrafting extends JavaPlugin {
             if (getCacheService().getMenuCache().get(player.getUniqueId()) != null)
                 continue;
 
-            getMethods().createCache(player.getUniqueId());
+            getUtilityHandler().createCache(player.getUniqueId());
 
         }
 
