@@ -24,7 +24,7 @@ Adds an item to minecraft that contains crafting menus\
 
 ## Guide
 
-You can craft the item using a `barrel` and a `crafting table`.
+1. You can craft the item using a `barrel` and a `crafting table`.
 ![1 1 0-recipe](https://github.com/user-attachments/assets/26276cc7-6ea3-4766-94b7-7f6d74a0509b)\
-Tables inside need to be unlocked first by putting their respective item into their proper slot.
+2. Tables inside need to be unlocked first by putting their respective item into their proper slot.
 ![1 1 0-unlockables](https://github.com/user-attachments/assets/d3321259-546c-48d2-abf7-987f60038c41)
